@@ -9,7 +9,7 @@
     android:paddingEnd="@dimen/dimen_16">
 
     <TextView
-        android:id="@+id/tvRegistro"
+        android:id="@+id/tvInicioSesion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/registro"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:hint="@string/nombre"
-        app:layout_constraintTop_toBottomOf="@id/tvRegistro"
+        app:layout_constraintTop_toBottomOf="@id/tvInicioSesion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dimen_16">
@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:hint="@string/contrasena"
+        app:endIconMode="password_toggle"
         app:layout_constraintTop_toBottomOf="@id/tilUsuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +89,8 @@
             android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:maxLength="320"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

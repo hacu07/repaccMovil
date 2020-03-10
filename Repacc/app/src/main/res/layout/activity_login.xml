@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
+    tools:context=".login.view.LoginActivity">
+
+    <TextView
+        android:id="@+id/tvInicioSesion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/inicio_sesion"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_32"
+        android:layout_marginTop="@dimen/dimen_16"
+        app:layout_constraintBottom_toTopOf="@id/tilUsuario"
+        app:layout_constraintStart_toStartOf="@id/tilContrasena"
+        app:layout_constraintEnd_toEndOf="@id/tilContrasena"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/usuario"
+        app:layout_constraintBottom_toTopOf="@id/tilContrasena"
+        app:layout_constraintStart_toStartOf="@id/tilContrasena"
+        app:layout_constraintEnd_toEndOf="@id/tilContrasena"
+        android:layout_marginTop="@dimen/dimen_8">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="16"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilContrasena"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:hint="@string/contrasena"
+        app:endIconMode="password_toggle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIngreso"
+        android:onClick="login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ingresar"
+        android:layout_marginTop="@dimen/dimen_8"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        app:layout_constraintStart_toStartOf="@id/tilContrasena"
+        app:layout_constraintEnd_toEndOf="@id/tilContrasena"
+        app:layout_constraintTop_toBottomOf="@id/tilContrasena"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recuperar_contrasena"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/btnIngreso"
+        app:layout_constraintEnd_toEndOf="@id/btnIngreso"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Repacc</string>
+    <string name="url_api">http://192.168.1.48:3004/api/</string>
     <string name="ingreso">Ingreso</string>
     <string name="registro">Registro</string>
     <string name="usuario">Usuario</string>
@@ -11,4 +12,22 @@
     <string name="correo">Correo electrónico</string>
     <string name="celular">Número Celular</string>
     <string name="registro_terminos_condiciones">Al registrarse esta aceptando los <a href="https://www.youtube.com/">terminos y condiciones</a> de la aplicación.</string>
+    <string name="recuperar_contrasena">Recuperar Contraseña</string>
+    <string name="ERROR_RESPONSE">Error de solicitud</string>
+    <string name="ERROR_CONEXION">Sin conexión</string>
+    <string name="estado_del_trafico">Estado del trafico</string>
+    <string name="reportar_accidente">Reportar accidente</string>
+    <string name="reportes">Reportes</string>
+    <string name="mis_vehiculos">Mis vehiculos</string>
+    <string name="perfil">Perfil</string>
+    <string name="hint_usuario">Usuario</string>
+    <string name="hint_rh">RH</string>
+    <string name="qr">QR</string>
+    <string name="direccion">Dirección</string>
+    <string name="editar">Editar</string>
+    <string name="guardar">Guardar</string>
+    <string name="datos_del_conductor">Datos del conductor</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="recibir_notificaciones">Recibir notificaciones</string>
+
 </resources>

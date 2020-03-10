@@ -26,6 +26,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIngreso"
+        android:onClick="irLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/ingreso"
