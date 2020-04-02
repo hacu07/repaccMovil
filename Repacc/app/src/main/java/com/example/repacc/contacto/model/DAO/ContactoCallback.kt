@@ -1,4 +1,7 @@
 package com.example.repacc.contacto.model.DAO
 
-class ContactoCallback {
+import com.example.repacc.contacto.event.ContactoEvent
+
+interface ContactoCallback {
+    fun response(response: ContactoEvent)
 }

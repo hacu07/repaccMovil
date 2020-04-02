@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".perfilEdicion.view.PerfilEdicionActivity"></activity>
+        <activity android:name=".contacto.view.ContactoActivity"></activity>
+        <activity android:name=".perfilEdicion.view.PerfilEdicionActivity" />
         <activity android:name=".perfil.view.PerfilActivity" />
         <activity android:name=".menu.view.MenuActivity" />
         <activity android:name=".login.view.LoginActivity" />

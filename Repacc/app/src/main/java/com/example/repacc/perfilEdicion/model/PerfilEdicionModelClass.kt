@@ -2,12 +2,11 @@ package com.example.repacc.perfilEdicion.model
 
 import android.content.Context
 import com.example.repacc.perfilEdicion.event.DepartamentoEvent
+import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
 import com.example.repacc.perfilEdicion.event.MunicipioEvent
 import com.example.repacc.perfilEdicion.event.PaisEvent
-import com.example.repacc.perfilEdicion.model.DAO.DepartamentoCallback
-import com.example.repacc.perfilEdicion.model.DAO.MunicipioCallback
-import com.example.repacc.perfilEdicion.model.DAO.PaisCallback
-import com.example.repacc.perfilEdicion.model.DAO.PerfilEdicionDAO
+import com.example.repacc.perfilEdicion.model.DAO.*
+import com.example.repacc.pojo.Usuario
 import org.greenrobot.eventbus.EventBus
 
 class PerfilEdicionModelClass: PerfilEdicionModel, PaisCallback, DepartamentoCallback, MunicipioCallback {
@@ -28,6 +27,18 @@ class PerfilEdicionModelClass: PerfilEdicionModel, PaisCallback, DepartamentoCal
 
     override fun obtenerCiudades(context: Context, idDpto: String) {
         mDAO.obtenerMunicipios(context, idDpto, this)
+    }
+
+    override fun editarPerfil(context: Context, usuario: Usuario) {
+        mDAO.editarPerfil(context, usuario, object: EdicionPerfilCallback{
+            override fun response(event: EdicionPerfilEvent) {
+                postEditarPerfil(event)
+            }
+        })
+    }
+
+    private fun postEditarPerfil(event: EdicionPerfilEvent){
+        EventBus.getDefault().post(event)
     }
 
     /**
@@ -62,4 +73,9 @@ class PerfilEdicionModelClass: PerfilEdicionModel, PaisCallback, DepartamentoCal
     private fun postMunicipio(municipioEvent: MunicipioEvent) {
         EventBus.getDefault().post(municipioEvent)
     }
+
+    /**
+    *   EDITAR PERFIL CALLBACK
+    * */
+
 }

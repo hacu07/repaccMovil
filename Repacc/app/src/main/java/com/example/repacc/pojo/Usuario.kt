@@ -14,7 +14,7 @@ data class Usuario(
     var foto: String? = null,
     var tipoSangre: String? = null,
     var munNotif: Municipio? = null,
-    var recibirNotif: Boolean? = null,
+    var recibirNotif: Boolean = false,
     var munResid: Municipio? = null,
     var estado: Estado? = null
     )

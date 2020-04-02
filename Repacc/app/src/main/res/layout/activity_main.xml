@@ -26,15 +26,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIngreso"
-        android:onClick="irLogin"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:layout_marginBottom="16dp"
+        android:onClick="irLogin"
         android:text="@string/ingreso"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glMain"
-        android:layout_margin="@dimen/dimen_16"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegistro"

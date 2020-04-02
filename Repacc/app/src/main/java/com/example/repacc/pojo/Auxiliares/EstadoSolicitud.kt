@@ -1,4 +1,6 @@
 package com.example.repacc.pojo.Auxiliares
 
-class EstadoSolicitud {
-}
+data class EstadoSolicitud(
+    val idSolicitud: String,
+    val aceptado : Boolean
+)

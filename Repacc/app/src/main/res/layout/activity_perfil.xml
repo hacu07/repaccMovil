@@ -34,8 +34,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imvFoto"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="@dimen/dimen_128"
+            android:layout_height="@dimen/dimen_128"
             android:src="@drawable/user"
             app:civ_border_overlay="true"
             app:civ_border_color="@android:color/white"

@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itmCon_cv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dimen_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glInt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/itmCon_foto"
+                android:layout_width="@dimen/dimen_128"
+                android:layout_height="@dimen/dimen_128"
+                android:padding="@dimen/dimen_8"
+                android:src="@drawable/helmet"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/itmCon_nombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dimen_8"
+                android:text="@string/nombre"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/glInt"
+                app:layout_constraintStart_toEndOf="@+id/itmCon_foto"
+                />
+
+            <TextView
+                android:id="@+id/itmCon_usuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dimen_8"
+                android:text="@string/usuario"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_16"
+                app:layout_constraintStart_toEndOf="@+id/itmCon_foto"
+                app:layout_constraintTop_toBottomOf="@id/glInt"/>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

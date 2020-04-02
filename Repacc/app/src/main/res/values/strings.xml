@@ -29,5 +29,14 @@
     <string name="datos_del_conductor">Datos del conductor</string>
     <string name="notificaciones">Notificaciones</string>
     <string name="recibir_notificaciones">Recibir notificaciones</string>
+    <string name="pais">País</string>
+    <string name="departamento">Departamento</string>
+    <string name="municipio">Municipio</string>
+    <string name="tipo_de_sangre">Tipo de sangre</string>
+    <string name="contactos">Contactos</string>
+    <string name="solicitudes">Solicitudes de contacto</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="aceptar">Aceptar</string>
 
 </resources>

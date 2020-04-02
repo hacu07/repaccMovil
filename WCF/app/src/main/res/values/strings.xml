@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">WCF</string>
+    <string name="app_name">Servi-Envía</string>
+    <string name="url_api">http://localhost/api/</string>
+    <string name="envio">Enviados</string>
+    <string name="registro">Registrar Envio</string>
+    <string name="cliente">Clientes</string>
+    <string name="cedula">Cedula</string>
+    <string name="Estado">Estado</string>
+    <string name="nombres">Nombres</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="fecha_nac">Fecha nacimiento AAAA-MM-DD</string>
+    <string name="direccion">Dirección</string>
+    <string name="telefono">Telefono</string>
+    <string name="email">Correo electronico</string>
+    <string name="ERROR_CONEXION">Sin conexión</string>
+    <string name="ERROR_RESPONSE">Error de respuesta</string>
 </resources>

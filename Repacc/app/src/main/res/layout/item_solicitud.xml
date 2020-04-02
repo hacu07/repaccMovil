@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_4"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itmSol_cv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dimen_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/itmSol_foto"
+                android:layout_width="@dimen/dimen_128"
+                android:layout_height="@dimen/dimen_128"
+                android:padding="@dimen/dimen_4"
+                android:src="@drawable/helmet"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/itmSol_usuario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/usuario"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_16"
+                app:layout_constraintBottom_toTopOf="@id/itmSol_btnConfirmar"
+                app:layout_constraintEnd_toEndOf="@id/itmSol_btnRechazar"
+                app:layout_constraintStart_toStartOf="@+id/itmSol_btnConfirmar"
+                app:layout_constraintTop_toTopOf="@id/itmSol_foto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/itmSol_btnConfirmar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_8"
+                android:onClick="irLogin"
+                android:text="@string/aceptar"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/itmSol_foto"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/itmSol_btnRechazar"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:onClick="irLogin"
+                android:text="@string/rechazar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

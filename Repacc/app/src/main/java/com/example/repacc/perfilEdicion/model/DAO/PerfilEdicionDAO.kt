@@ -3,8 +3,10 @@ package com.example.repacc.perfilEdicion.model.DAO
 import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.perfilEdicion.event.DepartamentoEvent
+import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
 import com.example.repacc.perfilEdicion.event.MunicipioEvent
 import com.example.repacc.perfilEdicion.event.PaisEvent
+import com.example.repacc.pojo.Usuario
 import com.example.repacc.util.Util
 import retrofit2.Call
 import retrofit2.Callback
@@ -109,6 +111,34 @@ class PerfilEdicionDAO {
                         msj = context.getString(R.string.ERROR_CONEXION)
                     )
                 )
+            }
+        })
+    }
+
+    fun editarPerfil(context: Context, usuario: Usuario, callback: EdicionPerfilCallback){
+        val service = Util.getRetrofit().create<APIServicePE>(APIServicePE::class.java)
+
+        service.editarPerfil(usuario).enqueue(object: Callback<EdicionPerfilEvent>{
+            override fun onResponse(call: Call<EdicionPerfilEvent>,response: Response<EdicionPerfilEvent>) {
+                val event = response?.body()
+
+                if(event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
+                    callback.response(event)
+                }else{
+                    callback.response(
+                        EdicionPerfilEvent(
+                            typeEvent =  Util.ERROR_RESPONSE,
+                            msj = context.getString(R.string.ERROR_RESPONSE)
+                        ))
+                }
+            }
+            override fun onFailure(call: Call<EdicionPerfilEvent>, t: Throwable) {
+                callback.response(
+                    EdicionPerfilEvent(
+                    typeEvent =  Util.ERROR_CONEXION,
+                    msj = context.getString(R.string.ERROR_CONEXION)
+                ))
             }
         })
     }

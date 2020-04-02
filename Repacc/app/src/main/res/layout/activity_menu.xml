@@ -101,7 +101,7 @@
 
     <androidx.cardview.widget.CardView
         Of="@id/glv"
-        android:onClick="irPerfil"
+        android:onClick="irContactos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/dimen_8"
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/glv"
         app:layout_constraintTop_toBottomOf="@id/glh2">
-        <include layout="@layout/menu_perfil" />
+        <include layout="@layout/menu_contactos" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

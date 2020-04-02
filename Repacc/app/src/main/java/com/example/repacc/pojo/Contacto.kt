@@ -1,4 +1,7 @@
 package com.example.repacc.pojo
 
-class Contacto {
-}
+data class Contacto(
+    val _id: String,
+    val usuario: Usuario? =  null,
+    val contacto: Usuario? = null
+)

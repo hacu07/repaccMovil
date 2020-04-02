@@ -1,12 +1,12 @@
 package com.example.repacc.perfilEdicion.model.DAO
 
 import com.example.repacc.perfilEdicion.event.DepartamentoEvent
+import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
 import com.example.repacc.perfilEdicion.event.MunicipioEvent
 import com.example.repacc.perfilEdicion.event.PaisEvent
+import com.example.repacc.pojo.Usuario
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /* Servicios para Perfil Edicion */
 interface APIServicePE {
@@ -18,4 +18,7 @@ interface APIServicePE {
 
     @GET("municipio/{idDepartamento}")
     fun obtenerMunicipios(@Path("idDepartamento") idDepartamento: String): Call<MunicipioEvent>
+
+    @PUT("usuario/edicion")
+    fun editarPerfil(@Body usuario: Usuario): Call<EdicionPerfilEvent>
 }

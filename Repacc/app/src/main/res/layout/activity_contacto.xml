@@ -6,4 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".contacto.view.ContactoActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barMenu"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:backgroundTint="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+            <include layout="@layout/toolbar"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Solicitud -->
+    <TextView
+        android:id="@+id/title_solicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/solicitudes"
+        android:textSize="@dimen/text_16"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginLeft="@dimen/dimen_8"
+        app:layout_constraintTop_toBottomOf="@id/barMenu"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSolicitud"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_solicitud"
+        />
+
+
+    <!-- Contacto -->
+    <TextView
+        android:id="@+id/title_contactos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactos"
+        android:textSize="@dimen/text_16"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_marginLeft="@dimen/dimen_8"
+        app:layout_constraintTop_toBottomOf="@id/rvSolicitud"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvContacto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_contactos"
+        tools:listitem="@layout/item_contacto"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

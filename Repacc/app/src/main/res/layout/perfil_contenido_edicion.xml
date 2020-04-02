@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/dimen_8">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glvPE"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imvFotoEdicion"
         android:layout_width="128dp"
@@ -71,32 +79,42 @@
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo_de_sangre"
+        app:layout_constraintTop_toTopOf="@id/spiRHEdicion"
+        app:layout_constraintBottom_toBottomOf="@id/spiRHEdicion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glvPE"/>
+
     <Spinner
         android:id="@+id/spiRHEdicion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:spinnerMode="dialog"
         android:layout_marginTop="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/tilUsuarioEdicion"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvPE"
+        app:layout_constraintTop_toBottomOf="@+id/tilCelularEdicion" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilCorreoEdicion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:hint="@string/correo"
-        app:layout_constraintTop_toBottomOf="@id/spiRHEdicion"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/dimen_8"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_8">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilUsuarioEdicion">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCorreoEdicion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="320"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:maxLength="320" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +143,7 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/tilCelularEdicion"
+        app:layout_constraintTop_toBottomOf="@id/spiRHEdicion"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Switch
@@ -137,34 +155,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pais"
+        app:layout_constraintTop_toTopOf="@id/spiPaisNotif"
+        app:layout_constraintBottom_toBottomOf="@id/spiPaisNotif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glvPE"/>
+
     <Spinner
         android:id="@+id/spiPaisNotif"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
         android:layout_marginTop="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/swRecibNotif"
+        android:prompt="@string/pais"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvPE"
+        app:layout_constraintTop_toBottomOf="@id/swRecibNotif" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/departamento"
+        app:layout_constraintTop_toTopOf="@id/spiDepNotif"
+        app:layout_constraintBottom_toBottomOf="@id/spiDepNotif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="@id/glvPE"/>
 
     <Spinner
         android:id="@+id/spiDepNotif"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
         android:layout_marginTop="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/spiPaisNotif"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvPE"
+        app:layout_constraintTop_toBottomOf="@id/spiPaisNotif" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/municipio"
+        app:layout_constraintTop_toTopOf="@id/spiMunNotif"
+        app:layout_constraintBottom_toBottomOf="@id/spiMunNotif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="@id/glvPE"/>
 
     <Spinner
         android:id="@+id/spiMunNotif"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
         android:layout_marginTop="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/spiDepNotif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvPE"
+        app:layout_constraintTop_toBottomOf="@id/spiDepNotif" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
