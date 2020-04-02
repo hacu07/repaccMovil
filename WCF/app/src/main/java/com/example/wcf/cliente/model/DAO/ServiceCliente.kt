@@ -10,7 +10,7 @@ interface ServiceCliente {
     @POST("cliente/buscar")
     fun buscarCliente(@Body cliente: Cliente): Call<ClienteEvent>
 
-    @POST("cliente/registro")
+    @POST("Service.svc/crearCliente")
     fun guardarCliente(@Body cliente: Cliente): Call<ClienteEvent>
 
     @POST("cliente/cambiarestado")

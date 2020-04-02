@@ -22,6 +22,9 @@ class Util {
         val CLIENTE_EVENT_BUSQUEDA = 101
         val CLIENTE_EVENT_ESTADO = 102
 
+        val CONSULTA_CLIENTE_EMISOR = 1
+        val CONSULTA_CLIENTE_DESTINO= 2
+
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(URL_API)
@@ -30,7 +33,7 @@ class Util {
         }
 
         fun mostrarMsj(context: Context, msj: String){
-            Toast.makeText(context,msj,Toast.LENGTH_LONG).show()
+            Toast.makeText(context,msj,Toast.LENGTH_SHORT).show()
         }
     }
 }
