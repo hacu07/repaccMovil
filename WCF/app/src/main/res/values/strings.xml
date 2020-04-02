@@ -14,4 +14,13 @@
     <string name="email">Correo electronico</string>
     <string name="ERROR_CONEXION">Sin conexión</string>
     <string name="ERROR_RESPONSE">Error de respuesta</string>
+    <string name="cedulaemisor">Cedula emisor</string>
+    <string name="ceduladestinatario">Cedula destinatario</string>
+    <string name="nombreemisor">Nombre emisor</string>
+    <string name="nombredestinatario">Nombre destinatario</string>
+    <string name="ciudad_de_origen">Ciudad de origen:</string>
+    <string name="pesokilos">Peso en kilos</string>
+    <string name="valorseguro">Valor a asegurar</string>
+    <string name="valortotal">Valor envio</string>
+    <string name="ciudad_de_destino">Ciudad de destino</string>
 </resources>
