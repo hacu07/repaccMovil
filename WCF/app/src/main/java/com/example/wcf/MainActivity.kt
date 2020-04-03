@@ -8,6 +8,7 @@ import android.view.View
 import androidx.core.content.ContextCompat.startActivity
 import com.example.wcf.Util.Util
 import com.example.wcf.cliente.vista.ClienteActivity
+import com.example.wcf.envios.view.EnviosActivity
 import com.example.wcf.registro.view.RegistroActivity
 
 
@@ -27,6 +28,11 @@ class MainActivity : AppCompatActivity() {
 
     fun irRegistro(view: View){
         val intent = Intent(this,RegistroActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun irEnvios(view: View){
+        val intent = Intent(this,EnviosActivity::class.java)
         startActivity(intent)
     }
 }

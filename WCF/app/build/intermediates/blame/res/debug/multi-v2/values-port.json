@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\hacu1\\Documents\\PROYECTOREPACC\\android\\WCF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "outputFile": "C:\\Users\\DESARROLLO4\\Documents\\repaccMovil\\WCF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\hacu1\\.gradle\\caches\\transforms-2\\files-2.1\\7b1d933bdbebfe3eaad86ff1c14f9fb8\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\DESARROLLO4\\.gradle\\caches\\transforms-2\\files-2.1\\7b1d933bdbebfe3eaad86ff1c14f9fb8\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

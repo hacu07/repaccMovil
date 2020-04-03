@@ -24,6 +24,7 @@
 
     <ImageView
         android:id="@+id/btnEnvio"
+        android:onClick="irEnvios"
         android:layout_width="0dp"
         android:src="@drawable/envio"
         android:layout_height="0dp"

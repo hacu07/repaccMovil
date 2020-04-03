@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.example.wcf.envios.view.EnviosActivity" />
         <activity android:name="com.example.wcf.registro.view.RegistroActivity" />
         <activity android:name="com.example.wcf.cliente.vista.ClienteActivity" />
         <activity android:name="com.example.wcf.MainActivity" >

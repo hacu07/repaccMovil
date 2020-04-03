@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".envios.view.EnviosActivity"></activity>
+        <activity android:name=".envios.view.EnviosActivity" />
         <activity android:name=".registro.view.RegistroActivity" />
         <activity android:name=".cliente.vista.ClienteActivity" />
         <activity android:name=".MainActivity">
