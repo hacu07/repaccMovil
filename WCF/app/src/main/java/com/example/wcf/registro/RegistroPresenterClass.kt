@@ -6,7 +6,9 @@ import com.example.wcf.pojo.Ciudad
 import com.example.wcf.pojo.Cliente
 import com.example.wcf.pojo.Envios
 import com.example.wcf.pojo.Pesos
+import com.example.wcf.registro.event.ClienEvent
 import com.example.wcf.registro.event.PesosEvent
+import com.example.wcf.registro.event.RegistroEvent
 import com.example.wcf.registro.model.RegistroModel
 import com.example.wcf.registro.model.RegistroModelClass
 import com.example.wcf.registro.view.RegistroActivity
@@ -19,7 +21,7 @@ class RegistroPresenterClass: RegistroPresenter {
     var mModel: RegistroModel
     var mView: RegistroView? = null
 
-    var tipoCliente = 0
+    var tipoCliente = 0 // 1 = cliete_emi - 2 = cliente_des
     var cliente_emi: Cliente? = null
     var cliente_des: Cliente? = null
 
@@ -59,6 +61,7 @@ class RegistroPresenterClass: RegistroPresenter {
             this.tipoCliente = tipoCliente
             mView?.mostrarProgreso(true)
             mView?.habilitarElementos(false)
+            mModel.buscarCliente(context,cliente)
         }
     }
 
@@ -113,12 +116,12 @@ class RegistroPresenterClass: RegistroPresenter {
 
         if(valorSeguro < 0){
             esValido = false
-            mView?.mostrarErrorSeguro("Valor de seguro negativo.")
+            mView?.mostrarErrorSeguro("Valor de seguro no permitido.")
         }
 
         if (valorEnvio <= 0){
             esValido = false
-            mView?.mostrarErrorValorEnvio("Valor de envio negativo.")
+            mView?.mostrarErrorValorEnvio("Valor de envio no permitido.")
         }
 
         if (cliente_emi == null){
@@ -133,12 +136,12 @@ class RegistroPresenterClass: RegistroPresenter {
 
         if (ciud_orig == null){
             esValido = false
-            mView?.mostarErrorCiudadOrigen("Ciudad origen no asignada.")
+            mView?.mostarErrorCiudadOrigen("Ciudad ORIGEN no asignada.")
         }
 
         if (ciud_dest == null){
             esValido = false
-            mView?.mostarErrorCiudadDestino("Ciudad destino no asignada.")
+            mView?.mostarErrorCiudadDestino("Ciudad DESTINO no asignada.")
         }
 
         return esValido
@@ -156,6 +159,7 @@ class RegistroPresenterClass: RegistroPresenter {
                         mView?.habilitarElementos(true)
                     }
                     else -> {
+                        mView?.habilitarElementos(true)
                         event.msj?.let { mView?.mostrarMsj(it) }
                     }
                 }
@@ -197,6 +201,59 @@ class RegistroPresenterClass: RegistroPresenter {
         }
 
         if (peso != null)
-            pesosKl = pesosKl
+            pesosKl = peso.preciokl
+    }
+
+    override fun pesosKl(): Int {
+        return pesosKl
+    }
+
+    @Subscribe
+    fun onEventClienEvent(clienEvent: ClienEvent){
+        if(mView != null){
+            mView?.mostrarProgreso(false)
+            mView?.habilitarElementos(true)
+            clienEvent.msj?.let { mView?.mostrarMsj(it) }
+
+            when(clienEvent.typeEvent){
+                Util.SUCCESS -> {
+                    if (tipoCliente == Util.CONSULTA_CLIENTE_EMISOR) //cliente_emi
+                        cliente_emi = clienEvent.content
+                    else
+                        cliente_des = clienEvent.content
+
+
+                    mView?.asignarNombreCliente(clienEvent.content, tipoCliente)
+                }
+                else -> {
+                    if (tipoCliente == Util.CONSULTA_CLIENTE_EMISOR) //cliente_emi
+                        cliente_emi = null
+                    else
+                        cliente_des = null
+
+                    mView?.limpiarNombreCliente(tipoCliente)
+                }
+            }
+        }
+    }
+
+    @Subscribe
+    fun onEventListenerRegistro(registroEvent: RegistroEvent){
+        if(mView != null){
+            mView?.mostrarProgreso(false)
+            mView?.habilitarElementos(true)
+            registroEvent.msj?.let { mView?.mostrarMsj(it) }
+
+            when(registroEvent.typeEvent){
+                Util.SUCCESS -> {
+                    mView?.mostrarMsj("GUIA NUMERO: ${registroEvent.content?.cod_guia}")
+                    cliente_emi = null
+                    cliente_des = null
+                    ciud_orig = null
+                    ciud_dest = null
+                    mView?.limpiar()
+                }
+            }
+        }
     }
 }

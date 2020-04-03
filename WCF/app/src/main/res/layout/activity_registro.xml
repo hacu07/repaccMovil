@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dimen_4"
     tools:context=".registro.view.RegistroActivity">
+    <ProgressBar
+        android:id="@+id/progresoRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,15 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ProgressBar
-                android:id="@+id/progresoRegistro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="gone"/>
+
 
             <ImageButton
                 android:id="@+id/btnBuscarEmisor"
@@ -209,7 +210,8 @@
                     android:id="@+id/etValor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

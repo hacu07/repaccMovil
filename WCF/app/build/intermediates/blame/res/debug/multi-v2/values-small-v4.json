@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\DESARROLLO4\\Documents\\repaccMovil\\WCF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "outputFile": "C:\\Users\\hacu1\\Documents\\PROYECTOREPACC\\android\\WCF\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\DESARROLLO4\\.gradle\\caches\\transforms-2\\files-2.1\\ba5673884fade488a8ac9589d304ccf2\\material-1.1.0-alpha10\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "C:\\Users\\hacu1\\.gradle\\caches\\transforms-2\\files-2.1\\ba5673884fade488a8ac9589d304ccf2\\material-1.1.0-alpha10\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

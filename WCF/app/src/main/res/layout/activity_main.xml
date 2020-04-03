@@ -53,7 +53,6 @@
         android:onClick="irRegistro"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/paquete"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gl1"

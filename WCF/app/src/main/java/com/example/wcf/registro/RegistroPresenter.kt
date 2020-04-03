@@ -12,4 +12,5 @@ interface RegistroPresenter {
     fun obtenerPesos(context: Context)
     fun buscarCliente(context: Context, cliente: Cliente, tipoCliente: Int)
     fun registrarEnvio(context: Context, pesoKilos: Int, valorSeguro: Int, valorEnvio: Int)
+    fun pesosKl(): Int
 }

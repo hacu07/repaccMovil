@@ -23,4 +23,10 @@
     <string name="valorseguro">Valor a asegurar</string>
     <string name="valortotal">Valor envio</string>
     <string name="ciudad_de_destino">Ciudad de destino</string>
+    <string name="numeroguia">Numero Guia</string>
+    <string name="pendiente">Pendiente</string>
+    <string name="pendiente">Pendiente</string>
+    <string name="entregado">Entregado</string>
+    <string name="enviado">Enviado</string>
+    <string name="recolectado">Recolectado</string>
 </resources>

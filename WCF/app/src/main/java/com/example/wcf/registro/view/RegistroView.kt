@@ -1,5 +1,7 @@
 package com.example.wcf.registro.view
 
+import com.example.wcf.pojo.Cliente
+
 interface RegistroView {
     fun salir()
     fun limpiar()
@@ -14,5 +16,7 @@ interface RegistroView {
     fun mostarErrorCiudadOrigen(msj: String)
     fun mostarErrorCiudadDestino(msj: String)
     fun cargarCiudadesOrigen(ciudadesOrigen: List<String>)
-    fun cargarCiudadesDestino(lCiudadesdestino: MutableList<String>)
+    fun cargarCiudadesDestino(lCiudadesdestino: List<String>)
+    fun asignarNombreCliente(content: Cliente?, tipoCliente: Int)
+    fun limpiarNombreCliente(tipoCliente: Int)
 }
