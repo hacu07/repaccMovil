@@ -16,7 +16,7 @@ class ClienteDAO {
         val service = Util.getRetrofit().create<ServiceCliente>(
             ServiceCliente::class.java)
 
-        service.buscarCliente(cliente).enqueue(object: Callback<ClienteEvent>{
+        service.buscarCliente(cliente.cedula!!).enqueue(object: Callback<ClienteEvent>{
             override fun onResponse(call: Call<ClienteEvent>, response: Response<ClienteEvent>) {
                 var clienteEvent = response?.body()
 

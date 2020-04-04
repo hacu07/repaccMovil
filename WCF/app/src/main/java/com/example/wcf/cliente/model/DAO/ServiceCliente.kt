@@ -4,15 +4,17 @@ import com.example.wcf.cliente.event.ClienteEvent
 import com.example.wcf.pojo.Cliente
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ServiceCliente {
-    @POST("cliente/buscar")
-    fun buscarCliente(@Body cliente: Cliente): Call<ClienteEvent>
+    @GET("/getCliente/{id}")
+    fun buscarCliente(@Path("id") id: String): Call<ClienteEvent>
 
-    @POST("Service.svc/crearCliente")
+    @POST("/crearCliente")
     fun guardarCliente(@Body cliente: Cliente): Call<ClienteEvent>
 
-    @POST("cliente/cambiarestado")
+    @POST("/actualizarEstadoCliente")
     fun cambiarEstado(@Body cliente: Cliente): Call<ClienteEvent>
 }

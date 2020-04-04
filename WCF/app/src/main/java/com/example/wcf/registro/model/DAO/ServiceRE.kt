@@ -8,15 +8,17 @@ import com.example.wcf.registro.event.PesosEvent
 import com.example.wcf.registro.event.RegistroEvent
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ServiceRE {
-    @POST("envio/registro")
+    @POST("/registrarEnvio")
     fun registrarEnvio(@Body envio: Envios): Call<RegistroEvent>
 
-    @POST("cliente/buscar")
-    fun buscarCliente(@Body cliente: Cliente): Call<ClienEvent>
+    @GET("/getCliente/{id}")
+    fun buscarCliente(@Path("id") id: String): Call<ClienEvent>
 
-    @POST("pesos/ciudades")
+    @GET("/getPesos")
     fun obtenerPesos(): Call<PesosEvent>
 }

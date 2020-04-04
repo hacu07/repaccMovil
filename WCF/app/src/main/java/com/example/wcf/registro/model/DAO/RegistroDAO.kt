@@ -50,7 +50,7 @@ class RegistroDAO {
     fun buscarCliente(context: Context, cliente: Cliente, callback: BasicCallback){
         val service = Util.getRetrofit().create<ServiceRE>(ServiceRE::class.java)
 
-        service.buscarCliente(cliente).enqueue(object: Callback<ClienEvent>{
+        service.buscarCliente(cliente.cedula!!).enqueue(object: Callback<ClienEvent>{
             override fun onResponse(call: Call<ClienEvent>, response: Response<ClienEvent>) {
                 var clienteEvent = response?.body()
 
