@@ -13,12 +13,12 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ServiceRE {
-    @POST("/registrarEnvio")
+    @POST("registrarEnvio")
     fun registrarEnvio(@Body envio: Envios): Call<RegistroEvent>
 
-    @GET("/getCliente/{id}")
+    @GET("getCliente/{id}")
     fun buscarCliente(@Path("id") id: String): Call<ClienEvent>
 
-    @GET("/getPesos")
+    @GET("getPesos")
     fun obtenerPesos(): Call<PesosEvent>
 }

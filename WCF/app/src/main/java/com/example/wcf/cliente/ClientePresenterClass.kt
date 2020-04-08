@@ -72,6 +72,7 @@ class ClientePresenterClass : ClientePresenter {
     @Subscribe
     fun onEventListener(event: ClienteEvent){
         if (event != null && mView != null){
+            event.msj?.let { mView?.mostrarMsj(it) }
             mView?.mostrarProgreso(false)
             when(event.event){
                 Util.CLIENTE_EVENT_BUSQUEDA -> eventBusqueda(event)
@@ -98,11 +99,10 @@ class ClientePresenterClass : ClientePresenter {
     }
 
     private fun eventBusqueda(event: ClienteEvent) {
-        event.msj?.let { mView?.mostrarMsj(it) }
         when(event.typeEvent){
 
             Util.SUCCESS ->{
-                event.content?.let { mView?.cargarCliente(it) }
+                event.cliente?.let { mView?.cargarCliente(it) }
             }
             Util.ERROR_DATA->{
                 mView?.mostrarMsj("Puede registrar el usuario")

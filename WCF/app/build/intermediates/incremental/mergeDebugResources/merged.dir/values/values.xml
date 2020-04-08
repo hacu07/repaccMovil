@@ -861,7 +861,7 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="telefono">Telefono</string>
     <string name="todo">TODO</string>
-    <string name="url_api">http://192.168.0.102:54248/Service.svc/</string>
+    <string name="url_api">http://servicioenvios.azurewebsites.net/Service.svc/</string>
     <string name="valorseguro">Valor a asegurar</string>
     <string name="valortotal">Valor envio</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

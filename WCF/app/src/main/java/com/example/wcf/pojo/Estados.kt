@@ -1,6 +1,8 @@
 package com.example.wcf.pojo
 
+import com.google.gson.annotations.SerializedName
+
 data class Estados(
-    val cod_estado: Int,
-    val descripcion: String
+    @SerializedName("COD_ESTADO") val cod_estado: Int,
+    @SerializedName("DESCRIPCION") val descripcion: String
 )

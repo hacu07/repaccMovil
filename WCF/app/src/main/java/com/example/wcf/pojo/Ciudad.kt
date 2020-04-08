@@ -1,6 +1,8 @@
 package com.example.wcf.pojo
 
+import com.google.gson.annotations.SerializedName
+
 data class Ciudad(
-    val cod_ciud: Int,
-    val nombre: String
+    @SerializedName("COD_CIUD") val cod_ciud: Int,
+    @SerializedName("NOMBRE") val nombre: String
 )

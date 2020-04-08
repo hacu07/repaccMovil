@@ -159,7 +159,7 @@ class RegistroPresenterClass: RegistroPresenter {
                         mView?.habilitarElementos(true)
                     }
                     else -> {
-                        mView?.habilitarElementos(true)
+                        mView?.habilitarElementos(false)
                         event.msj?.let { mView?.mostrarMsj(it) }
                     }
                 }
@@ -170,6 +170,7 @@ class RegistroPresenterClass: RegistroPresenter {
     }
 
     private fun asignarValoresSpinner(pesos: ArrayList<Pesos>?) {
+        this.pesos = pesos!!
         val ciudadesOrigen = mutableListOf<String>()
         pesos?.forEach {
             ciudadesOrigen.add(it.ciud_orig.nombre)
@@ -186,7 +187,7 @@ class RegistroPresenterClass: RegistroPresenter {
             // Obtiene las ciudades de destino que se relaciones con la de origen seleccionada
             if (it.ciud_orig.equals(ciud_orig)){
                 this.ciudadesDestino?.add(it.ciud_dest)
-                l_ciudadesDestino.add(it.ciud_orig.nombre)
+                l_ciudadesDestino.add(it.ciud_dest.nombre)
             }
         }
 

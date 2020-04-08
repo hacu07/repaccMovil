@@ -8,5 +8,5 @@ data class ClienteEvent(
     var typeEvent: Int = Util.ERROR_CONEXION,
     var error:Boolean = true,
     var msj:String?,
-    var content: Cliente? = null
+    var cliente: Cliente? = null
 )

@@ -6,6 +6,7 @@ import com.example.wcf.Util.BasicCallback
 import com.example.wcf.Util.Util
 import com.example.wcf.cliente.event.ClienteEvent
 import com.example.wcf.pojo.Cliente
+import com.example.wcf.pojo.EstadoCliente
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +57,7 @@ class ClienteDAO {
                 var clienteEvent = response?.body()
 
                 if (clienteEvent != null){
-                    clienteEvent.typeEvent = if(!clienteEvent.error) Util.SUCCESS else Util.ERROR_DATA
+                    clienteEvent.typeEvent = if(clienteEvent.error) Util.SUCCESS else Util.ERROR_DATA
                     clienteEvent.event =  Util.CLIENTE_EVENT_REGISTRO
                     callback.response(clienteEvent)
                 }else{
@@ -85,7 +86,7 @@ class ClienteDAO {
         val service = Util.getRetrofit().create<ServiceCliente>(
             ServiceCliente::class.java)
 
-        service.cambiarEstado(cliente).enqueue(object: Callback<ClienteEvent>{
+        service.cambiarEstado(EstadoCliente(cliente.cedula!!,cliente.estado!!)).enqueue(object: Callback<ClienteEvent>{
             override fun onResponse(call: Call<ClienteEvent>, response: Response<ClienteEvent>) {
                 var clienteEvent = response?.body()
 

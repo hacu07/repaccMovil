@@ -13,9 +13,9 @@ import retrofit2.http.Path
 
 /* Servicio de busqueda de envio */
 interface ServiceBE {
-    @POST("/actualizarEstadoEnvio")
+    @POST("actualizarEstadoEnvio")
     fun cambiarEstadoEnvio(@Body envio: EnvioEstado): Call<BasicEvent>
 
-    @GET("/obtenerEnvio/{id}")
+    @GET("obtenerEnvio/{id}")
     fun consultarEnvio(@Path("id") id: Int): Call<EnvioEvent>
 }
