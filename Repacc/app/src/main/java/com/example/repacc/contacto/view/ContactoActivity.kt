@@ -1,7 +1,9 @@
 package com.example.repacc.contacto.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.repacc.R
 import com.example.repacc.contacto.ContactoPresenter
@@ -9,6 +11,7 @@ import com.example.repacc.contacto.ContactoPresenterClass
 import com.example.repacc.contacto.view.adapter.ContactoAdapter
 import com.example.repacc.contacto.view.adapter.OnItemSolicitudListener
 import com.example.repacc.contacto.view.adapter.SolicitudAdapter
+import com.example.repacc.contactoAgregar.view.ContactoAgregarActivity
 import com.example.repacc.pojo.Contacto
 import com.example.repacc.pojo.Solicitud
 import com.example.repacc.pojo.Usuario
@@ -85,5 +88,11 @@ class ContactoActivity : AppCompatActivity(), ContactoView, OnItemSolicitudListe
     override fun agregarContacto(contacto: Contacto?) {
         mAdapterSolicitud.eliminarSolicitud(contacto)
         mAdapterContacto.agregarContacto(contacto)
+    }
+
+    /* Inicia actividad para buscar contacto */
+    fun buscarContacto(view: View) {
+        val intent = Intent(this, ContactoAgregarActivity::class.java)
+        startActivity(intent)
     }
 }

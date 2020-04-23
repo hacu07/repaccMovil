@@ -68,17 +68,14 @@ class ContactoDAO {
         val service = Util.getRetrofit().create<APIServiceSU>(APIServiceSU::class.java)
 
         if (Constantes.config?.usuario?._id != null){
-
-            var idUser = ""
-
+            var idUser = "" //Id del usuario que inicio sesion
             Constantes.config?.usuario?._id.let {
                 if (it != null) {
                     idUser = it
                 }
             }
-
+            //Envia ID de usuario que inicio sesion para buscar contactos
             service.cargarContactos(idUser).enqueue(object: Callback<ContactoEvent>{
-
                 override fun onResponse(
                     call: Call<ContactoEvent>,
                     response: Response<ContactoEvent>

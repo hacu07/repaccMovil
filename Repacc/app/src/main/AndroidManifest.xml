@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".contacto.view.ContactoActivity"></activity>
+        <activity android:name=".vehiculo.view.VehiculoActivity"></activity>
+        <activity android:name=".contactoAgregar.view.ContactoAgregarActivity" />
+        <activity android:name=".contacto.view.ContactoActivity" />
         <activity android:name=".perfilEdicion.view.PerfilEdicionActivity" />
         <activity android:name=".perfil.view.PerfilActivity" />
         <activity android:name=".menu.view.MenuActivity" />

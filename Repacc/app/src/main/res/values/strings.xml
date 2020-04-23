@@ -18,7 +18,7 @@
     <string name="estado_del_trafico">Estado del trafico</string>
     <string name="reportar_accidente">Reportar accidente</string>
     <string name="reportes">Reportes</string>
-    <string name="mis_vehiculos">Mis vehiculos</string>
+    <string name="mis_vehiculos">Vehiculos</string>
     <string name="perfil">Perfil</string>
     <string name="hint_usuario">Usuario</string>
     <string name="hint_rh">RH</string>
@@ -38,5 +38,8 @@
     <string name="confirmar">Confirmar</string>
     <string name="rechazar">Rechazar</string>
     <string name="aceptar">Aceptar</string>
+    <string name="buscar_usuario">Busqueda de usuario</string>
+    <string name="enviar_solicitud">Enviar Solicitud</string>
+    <string name="minimo_4_caracteres">Ingrese mas caracteres para la busqueda</string>
 
 </resources>
