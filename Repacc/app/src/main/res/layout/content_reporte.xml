@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/dimen_8">
+
+    <TextView
+        android:id="@+id/tvImagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:textSize="@dimen/dimen_16"
+        android:textStyle="bold"
+        android:text="@string/agregar_imagen" />
+
+    <ImageView
+        android:id="@+id/fotoReporte"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintTop_toBottomOf="@id/tvImagen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlacas"
+        android:layout_width="0dp"
+        tools:itemCount="1"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fotoReporte"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_placa"
+        android:visibility="gone"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPlacaReporte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_4"
+        app:layout_constraintTop_toBottomOf="@id/rvPlacas"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddPlaca"
+        app:layout_constraintStart_toStartOf="@id/fotoReporte"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/registrar_placa"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPlacaReporte"
+            android:maxLines="1"
+            android:maxLength="6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:inputType="textCapCharacters"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/btnAddPlaca"
+        android:onClick="agregarPlaca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintEnd_toEndOf="@id/fotoReporte"
+        app:layout_constraintTop_toTopOf="@id/tilPlacaReporte"
+        app:layout_constraintBottom_toBottomOf="@id/tilPlacaReporte"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilHeridosReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tilPlacaReporte"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/numero_heridos"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etHeridosReporte"
+            android:maxLines="1"
+            android:maxLength="2"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDescripReporte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tilHeridosReporte"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/descripcion"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescripReporte"
+            android:lines="5"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvTituloServicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilDescripReporte"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:textSize="@dimen/dimen_16"
+        android:textStyle="bold"
+        android:text="@string/solicitar_servicio" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvServicios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:itemCount="6"
+        android:layout_marginTop="@dimen/dimen_8"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloServicio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_servicios"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

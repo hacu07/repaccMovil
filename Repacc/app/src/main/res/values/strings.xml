@@ -18,7 +18,7 @@
     <string name="estado_del_trafico">Estado del trafico</string>
     <string name="reportar_accidente">Reportar accidente</string>
     <string name="reportes">Reportes</string>
-    <string name="mis_vehiculos">Vehiculos</string>
+    <string name="mis_vehiculos">Vehículos</string>
     <string name="perfil">Perfil</string>
     <string name="hint_usuario">Usuario</string>
     <string name="hint_rh">RH</string>
@@ -41,5 +41,35 @@
     <string name="buscar_usuario">Busqueda de usuario</string>
     <string name="enviar_solicitud">Enviar Solicitud</string>
     <string name="minimo_4_caracteres">Ingrese mas caracteres para la busqueda</string>
+    <string name="placa">Placa</string>
+    <string name="tipo_vehiculo">Tipo vehiculo</string>
+    <string name="marca">Marca</string>
+    <string name="modelo">Modelo</string>
+    <string name="color_vehiculo">Color vehiculo</string>
+    <string name="es_particular">Vehiculo particular</string>
+    <string name="falta_datos">Ingrese todos los datos para continuar.</string>
+    <string name="title_color_picker">Seleccione el color del vehiculo</string>
+    <string name="error_placa">Ingrese la placa del vehiculo</string>
+    <string name="error_color_vehiculo">Seleccione el color de su vehiculo</string>
+    <string name="title_activity_reporte">Reporte</string>
+    <string name="solicitar_servicio">Solicitar servicios</string>
+    <string name="numero_heridos">Numero heridos</string>
+    <string name="descripcion">Descripción</string>
+    <string name="agregar_imagen">Agregar Imagen</string>
+    <string name="msj_permiso_ubicacion">Pare reportar, debe aceptar el permiso de ubicación</string>
+    <string name="titulo_encender_gps">Señal GPS</string>
+    <string name="activar_gps">No tiene el GPS encendido, desea encender la señal GPS para reportar?</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="no_encendio_gps">Para reportar debe encender el GPS.</string>
+    <string name="no_internet">No tiene conexión a internet.</string>
+    <string name="intentar_nuevamente">Obteniendo señal GPS, intente de nuevo.</string>
+    <string name="registrar_placa">Registrar placa</string>
+    <string name="error_length_placa">Ingrese la placa completa</string>
+    <string name="placa_registrada">La placa del vehiculo se encuentra registrada</string>
+    <string name="location_empty">Debe indicar ubicación del accidente en el mapa.</string>
+    <string name="placas_empty">Debe ingresar las placas de los vehiculos involucrados</string>
+    <string name="descripcion_empty">Ingrese una breve descripción del accidente</string>
+    <string name="title_activity_reporte_detalle">Map</string>
+    <string name="codigo">Código reporte</string>
 
 </resources>

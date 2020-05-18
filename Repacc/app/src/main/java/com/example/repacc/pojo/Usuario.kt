@@ -1,5 +1,7 @@
 package com.example.repacc.pojo
 
+import java.io.Serializable
+
 data class Usuario(
     var _id:String? = null,
     var qr:String? = null,
@@ -17,4 +19,4 @@ data class Usuario(
     var recibirNotif: Boolean = false,
     var munResid: Municipio? = null,
     var estado: Estado? = null
-    )
+    ): Serializable

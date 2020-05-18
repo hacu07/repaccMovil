@@ -1,5 +1,7 @@
 package com.example.repacc.pojo
 
+import java.io.Serializable
+
 data class Municipio(
     val _id: String,
     val codigo: String,
@@ -7,4 +9,4 @@ data class Municipio(
     val nombre: String,
     val departamento: Departamento,
     val estado: Estado
-)
+): Serializable

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dimen_8">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glvVE"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civFotoVehi"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:civ_border_overlay="true"
+        app:civ_border_color="@android:color/black"
+        app:civ_circle_background_color="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imvFotoVehi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintStart_toStartOf="@id/civFotoVehi"
+        app:layout_constraintTop_toTopOf="@id/civFotoVehi"
+        app:layout_constraintEnd_toEndOf="@id/civFotoVehi"
+        app:layout_constraintBottom_toBottomOf="@id/civFotoVehi"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPlacaVeh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:hint="@string/placa"
+        app:layout_constraintTop_toBottomOf="@id/civFotoVehi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPlacaVeh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="6"
+            android:inputType="textCapWords"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tipo_vehiculo"
+        app:layout_constraintBottom_toBottomOf="@+id/spiTipVeh"
+        app:layout_constraintEnd_toEndOf="@id/glvVE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spiTipVeh" />
+
+    <Spinner
+        android:id="@+id/spiTipVeh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:prompt="@string/tipo_vehiculo"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvVE"
+        app:layout_constraintTop_toBottomOf="@id/tilPlacaVeh"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/marca"
+        app:layout_constraintBottom_toBottomOf="@+id/spiMarVeh"
+        app:layout_constraintEnd_toEndOf="@id/glvVE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spiMarVeh" />
+
+    <Spinner
+        android:id="@+id/spiMarVeh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:prompt="@string/marca"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvVE"
+        app:layout_constraintTop_toBottomOf="@id/spiTipVeh"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/modelo"
+        app:layout_constraintBottom_toBottomOf="@+id/spiModVeh"
+        app:layout_constraintEnd_toEndOf="@id/glvVE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spiModVeh" />
+
+    <Spinner
+        android:id="@+id/spiModVeh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:prompt="@string/modelo"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glvVE"
+        app:layout_constraintTop_toBottomOf="@id/spiMarVeh"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/color_vehiculo"
+        app:layout_constraintBottom_toBottomOf="@id/btnColorVeh"
+        app:layout_constraintEnd_toEndOf="@id/glvVE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnColorVeh" />
+
+    <Button
+        android:id="@+id/btnColorVeh"
+        android:onClick="mostrarColorPicker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spiModVeh"
+        app:layout_constraintStart_toStartOf="@id/glvVE"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Switch
+        android:id="@+id/swEsParticular"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/es_particular"
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@id/btnColorVeh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

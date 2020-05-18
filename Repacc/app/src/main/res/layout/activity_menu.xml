@@ -64,6 +64,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:onClick="irReporte"
         app:cardCornerRadius="@dimen/dimen_8"
         app:layout_constraintTop_toBottomOf="@id/glh1"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +75,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:onClick="irReportes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="@dimen/dimen_8"
@@ -86,7 +88,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        Of="@id/glv"
+        android:onClick="irVehiculos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/dimen_8"

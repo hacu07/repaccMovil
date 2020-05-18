@@ -11,4 +11,6 @@
     <dimen name="text_15">15sp</dimen>
     <dimen name="dimen_12">12sp</dimen>
     <dimen name="dimen_4">4dp</dimen>
+    <dimen name="text_8">8sp</dimen>
+    <dimen name="text_10">10sp</dimen>
 </resources>

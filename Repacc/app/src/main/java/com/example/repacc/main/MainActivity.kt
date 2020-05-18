@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.View
 import com.example.repacc.R
 import com.example.repacc.login.view.LoginActivity
+import com.example.repacc.menu.view.MenuActivity
+import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +18,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Util.URL_API = getString(R.string.url_api)
+        validaSesion()
+    }
+
+    /***
+     * Valida si hay registros de inicio de sesion anterior
+     */
+    private fun validaSesion() {
+        Util.getPreferences(this)
+
+        if(Constantes.config != null){
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun irRegistro(view: View) {
