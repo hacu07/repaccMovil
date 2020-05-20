@@ -2,6 +2,7 @@ package com.example.repacc.reporteDetalle.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.repacc.R
@@ -17,6 +18,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.reportedetalle_content.*
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
 class ReporteDetalleActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -46,8 +49,10 @@ class ReporteDetalleActivity : AppCompatActivity(), OnMapReadyCallback {
         repdet_etdir.setText("${mReporte.direccion}")
         repdet_ether.setText("${mReporte.numHeridos}")
         repdet_etDes.setText("${mReporte.descripcion}")
+
+        val format = SimpleDateFormat("hh:mm dd/MM/yyy")
         repdet_fecha.setText(
-            "${mReporte.date!!.hours}:${mReporte.date!!.minutes} ${mReporte.date!!.date}-${mReporte.date!!.month+1}-${mReporte.date!!.year+1900}"
+            format.format(mReporte.date)
         )
 
         if(mReporte.imagen != null){
@@ -106,5 +111,9 @@ class ReporteDetalleActivity : AppCompatActivity(), OnMapReadyCallback {
             marker?.position = latLng
         }
 
+    }
+
+    fun asignarUbicacion(view: View) {
+        zoomToLocation(mReporte.latitud!!, mReporte.longitud!!)
     }
 }

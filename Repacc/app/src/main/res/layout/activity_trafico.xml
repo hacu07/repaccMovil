@@ -10,36 +10,23 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        tools:context=".trafico.view.TraficoActivity"
         map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintBottom_toTopOf="@id/glR"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        map:layout_constraintGuide_percent="0.33"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        map:layout_constraintTop_toBottomOf="@+id/glR"
-        map:layout_constraintBottom_toBottomOf="parent">
-        <include layout="@layout/reportedetalle_content" />
-    </ScrollView>
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/repdet_fab"
-        android:onClick="asignarUbicacion"
+        android:id="@+id/fabLocation"
+        android:onClick="obtenerUbicacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_mylocation"
         android:backgroundTint="@android:color/white"
         android:background="@android:color/white"
         map:borderWidth="0dp"
-        map:layout_constraintTop_toTopOf="@id/map"
+        map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="@id/map"
         android:layout_margin="@dimen/dimen_4"
         map:fabSize="mini"/>

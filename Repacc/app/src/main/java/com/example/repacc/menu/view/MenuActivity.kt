@@ -11,6 +11,7 @@ import com.example.repacc.contacto.view.ContactoActivity
 import com.example.repacc.perfil.view.PerfilActivity
 import com.example.repacc.reporte.view.ReporteActivity
 import com.example.repacc.reportes.view.ReportesActivity
+import com.example.repacc.trafico.view.TraficoActivity
 import com.example.repacc.vehiculo.view.VehiculoActivity
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -59,6 +60,11 @@ class MenuActivity : AppCompatActivity() {
 
     fun irReportes(view: View) {
         val intent = Intent(this, ReportesActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun irTrafico(view: View) {
+        val intent = Intent(this, TraficoActivity::class.java)
         startActivity(intent)
     }
 

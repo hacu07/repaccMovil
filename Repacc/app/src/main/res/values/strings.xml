@@ -71,5 +71,8 @@
     <string name="descripcion_empty">Ingrese una breve descripción del accidente</string>
     <string name="title_activity_reporte_detalle">Map</string>
     <string name="codigo">Código reporte</string>
+    <string name="servicios_solicitados">Servicios solicitados</string>
+    <string name="title_activity_trafico">Map</string>
+    <string name="no_encendio_gps_trafico">Es necesario encender el gps para ver el trafico en su ubicación</string>
 
 </resources>
