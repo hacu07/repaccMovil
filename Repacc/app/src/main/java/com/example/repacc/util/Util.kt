@@ -124,6 +124,20 @@ class Util {
             return hasInternet
 
         }
+
+        /************************************************
+         * Retorna booleano indicando si es agente
+         */
+        fun esAgente(): Boolean {
+            var esAgente = false
+
+            if (Constantes.config?.agente != null){
+                // Si tiene estado activo
+                esAgente = (Constantes.config?.agente?.estado?.codigo == Constantes.ESTADO_CODIGO_ACTIVO)
+            }
+
+            return esAgente
+        }
     }
 
 

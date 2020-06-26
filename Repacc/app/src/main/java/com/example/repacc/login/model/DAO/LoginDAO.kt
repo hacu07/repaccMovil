@@ -43,7 +43,7 @@ class LoginDAO {
                         }
 
                         if (jwt != null){
-                            Constantes.config = Config(it.content, jwt)
+                            Constantes.config = Config(it.content, jwt, it.agente)
                             // Guarda en preferencias los datos del usuario y jwt
                             Util.guardarConfig(context)
                             callbackLogin.onSuccess(it)
@@ -53,7 +53,6 @@ class LoginDAO {
                             it.typeEvent = Util.ERROR_DATA
                             callbackLogin.onError(it)
                         }
-
                         return
                     }
 

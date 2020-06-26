@@ -48,13 +48,24 @@
         android:orientation="horizontal"
         />
 
+    <Switch
+        android:id="@+id/swDisponible"
+        android:onClick="cambiarEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8"
+        android:textStyle="bold"
+        android:text="@string/disponibilidad_agente"
+        app:layout_constraintTop_toBottomOf="@id/barMenu"/>
+
     <!-- Componentes -->
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvTrafico"
         android:onClick="irTrafico"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardCornerRadius="@dimen/dimen_8"
-        app:layout_constraintTop_toBottomOf="@id/barMenu"
+        app:layout_constraintTop_toBottomOf="@id/swDisponible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/glh1"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +74,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvRegisReporte"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:onClick="irReporte"
@@ -76,6 +88,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvReporte"
         android:onClick="irReportes"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -89,6 +102,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvVehiculo"
         android:onClick="irVehiculos"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -103,7 +117,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        Of="@id/glv"
+        android:id="@+id/cvContacto"
         android:onClick="irContactos"
         android:layout_width="0dp"
         android:layout_height="0dp"

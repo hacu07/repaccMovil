@@ -9,6 +9,9 @@ import com.example.repacc.vehiculo.view.VehiculoActivity
 class Constantes {
 
     companion object{
+        val ESTADO_CODIGO_ACTIVO = "T1A"
+        val ESTADO_CODIGO_INACTIVO = "T1I"
+
         // Actividad (Arreglar desps)
         var vehiculoAgregar: VehiculoActivity? = null
         // Preferencias

@@ -6,5 +6,7 @@ data class Estado(
     var _id: String? = null,
     var nombre: String? = null,
     var tipo: Int = 0,
-    var descripcion: String? = null
+    val orden: Int = 0,
+    var descripcion: String? = null,
+    val codigo: String? = null
     ) : Serializable

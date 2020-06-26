@@ -30,7 +30,7 @@ import java.lang.Exception
 
 class TraficoActivity : AppCompatActivity(),
     OnMapReadyCallback,
-    android.location.LocationListener{
+        android.location.LocationListener{
 
     private lateinit var mMap: GoogleMap
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Repacc</string>
-    <string name="url_api">http://192.168.1.48:3004/api/</string>
+    <string name="url_api">http://192.168.43.235:3004/api/</string>
     <string name="ingreso">Ingreso</string>
     <string name="registro">Registro</string>
     <string name="usuario">Usuario</string>
@@ -56,9 +56,9 @@
     <string name="numero_heridos">Numero heridos</string>
     <string name="descripcion">Descripción</string>
     <string name="agregar_imagen">Agregar Imagen</string>
-    <string name="msj_permiso_ubicacion">Pare reportar, debe aceptar el permiso de ubicación</string>
+    <string name="msj_permiso_ubicacion">Pare continuar, debe aceptar el permiso de ubicación.</string>
     <string name="titulo_encender_gps">Señal GPS</string>
-    <string name="activar_gps">No tiene el GPS encendido, desea encender la señal GPS para reportar?</string>
+    <string name="activar_gps">No tiene el GPS encendido, desea encender la señal GPS para continuar?</string>
     <string name="cancelar">Cancelar</string>
     <string name="no_encendio_gps">Para reportar debe encender el GPS.</string>
     <string name="no_internet">No tiene conexión a internet.</string>
@@ -74,5 +74,9 @@
     <string name="servicios_solicitados">Servicios solicitados</string>
     <string name="title_activity_trafico">Map</string>
     <string name="no_encendio_gps_trafico">Es necesario encender el gps para ver el trafico en su ubicación</string>
+    <string name="disponibilidad_agente">Disponibilidad agente:</string>
+    <string name="no_actualizo_estado_agente">No se logró actualizar estado, intente nuevamente...</string>
+    <string name="no_location">No se logró obtener la ubicación, intente nuevamente...</string>
+    <string name="no_gps_activate">Debe iniciar el gps para cambiar estado a disponible</string>
 
 </resources>
