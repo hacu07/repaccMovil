@@ -3,6 +3,7 @@ package com.example.repacc.menu.model.DAO
 import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.menu.events.EstadoAgenteEvent
+import com.example.repacc.menu.events.NotificacionesEvent
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Constantes
@@ -12,6 +13,40 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DAO {
+
+    fun obtenerNotificaciones(context: Context, callback: BasicCallback){
+        val service = Util.getRetrofit().create(APIServiceAE::class.java)
+
+        service.obtenerNotificaciones(Constantes.config?.usuario?._id!!).enqueue(object : Callback<NotificacionesEvent> {
+            override fun onResponse(
+                call: Call<NotificacionesEvent>,
+                response: Response<NotificacionesEvent>
+            ) {
+                val event = response?.body()
+
+                if (event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
+
+                    callback.response(event)
+                }else{
+                    callback.response(
+                        NotificacionesEvent(
+                            msj = context.getString(R.string.ERROR_RESPONSE),
+                            typeEvent = Util.ERROR_RESPONSE
+                        )
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<NotificacionesEvent>, t: Throwable) {
+                callback.response(
+                    NotificacionesEvent(
+                        msj = context.getString(R.string.ERROR_CONEXION)
+                    )
+                )
+            }
+        })
+    }
 
     /***********************************************************************
      * Realiza actualizacion de estado del agente en el servidor
@@ -35,7 +70,7 @@ class DAO {
                     )
                 }else{
                     callback.response(
-                        BasicEvent(
+                        EstadoAgenteEvent(
                             msj = context.getString(R.string.ERROR_RESPONSE)
                         )
                     )
@@ -44,7 +79,7 @@ class DAO {
 
             override fun onFailure(call: Call<EstadoAgenteEvent>, t: Throwable) {
                 callback.response(
-                    BasicEvent(
+                    EstadoAgenteEvent(
                         msj = context.getString(R.string.ERROR_CONEXION)
                     )
                 )

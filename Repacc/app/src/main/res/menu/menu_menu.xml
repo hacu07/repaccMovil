@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/mnirPerfil"
-        android:title="@string/editar"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/mnNotif"
+        android:title="@string/notificaciones"
         android:orderInCategory="10"
         app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_notifications_none"
+        />
+
+    <item android:id="@+id/mnirPerfil"
+        android:title="@string/perfil"
+        android:orderInCategory="10"
         android:icon="@drawable/ic_person"
+        />
+
+    <item android:id="@+id/mnSesion"
+        android:title="@string/cerrar_sesion"
+        android:orderInCategory="20"
+        android:icon="@drawable/ic_power"
         />
 </menu>

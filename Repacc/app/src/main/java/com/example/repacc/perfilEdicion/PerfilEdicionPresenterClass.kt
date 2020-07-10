@@ -1,6 +1,7 @@
 package com.example.repacc.perfilEdicion
 
 import android.content.Context
+import com.example.repacc.R
 import com.example.repacc.perfilEdicion.event.DepartamentoEvent
 import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
 import com.example.repacc.perfilEdicion.event.MunicipioEvent
@@ -47,7 +48,12 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
     }
 
     override fun editarPerfil(context: Context) {
-        usuarioModif?.let { mModel?.editarPerfil(context, it) }
+        if (mView != null){
+            if (usuarioModif?.tipoSangre != null)
+                usuarioModif?.let { mModel?.editarPerfil(context, it) }
+            else
+                mView?.mostrarMsj(context.getString(R.string.no_rh))
+        }
     }
 
     override fun asignarRH(position: Int) {

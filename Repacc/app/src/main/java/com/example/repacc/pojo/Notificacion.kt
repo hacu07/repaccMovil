@@ -1,12 +1,16 @@
 package com.example.repacc.pojo
 
+import java.io.Serializable
+
 data class Notificacion(
     val _id : String,
     val reporte: Reporte,
-    val involucrado: Involucrado,
+    // Se establece cuando se envia al contacto del involucrado
+    val involucrado: Involucrado? = null,
     val mensaje: String,
     val tipo: Tipo,
-    val usuario: Usuario, // destino del mensaje
+    // usuario al que se le envia el mensaje
+    val usuario: Usuario,
     val rol: Rol, // Rol del usuario destino
     val estado: Estado
-)
+): Serializable

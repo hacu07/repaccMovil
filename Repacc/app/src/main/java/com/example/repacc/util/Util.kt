@@ -47,7 +47,7 @@ class Util {
                     Constantes.PREFERENCE_PRIVATE_MODE
             )
 
-            if (preferences != null &&  context != null && Constantes.config != null){
+            //if (preferences != null &&  context != null && Constantes.config != null){
                 //Permite editar el archivo de las preferencias
                 val editor: SharedPreferences.Editor = preferences.edit()
 
@@ -56,7 +56,7 @@ class Util {
 
                 // Guarda en preferencias
                 l_guardo = editor.commit()
-            }
+            //}
 
             return l_guardo
         }
@@ -129,14 +129,7 @@ class Util {
          * Retorna booleano indicando si es agente
          */
         fun esAgente(): Boolean {
-            var esAgente = false
-
-            if (Constantes.config?.agente != null){
-                // Si tiene estado activo
-                esAgente = (Constantes.config?.agente?.estado?.codigo == Constantes.ESTADO_CODIGO_ACTIVO)
-            }
-
-            return esAgente
+            return Constantes.config?.agente != null
         }
     }
 

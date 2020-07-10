@@ -4,4 +4,5 @@ import android.content.Context
 
 interface MenuModel {
     fun cambiarEstado(context: Context, disponible: Boolean)
+    fun obtenerNotificaciones(context: Context)
 }

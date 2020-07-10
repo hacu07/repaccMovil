@@ -3,6 +3,7 @@ package com.example.repacc.menu
 import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.menu.events.EstadoAgenteEvent
+import com.example.repacc.menu.events.NotificacionesEvent
 import com.example.repacc.menu.model.MenuModel
 import com.example.repacc.menu.model.MenuModelClass
 import com.example.repacc.menu.view.MenuActivity
@@ -61,7 +62,8 @@ class MenuPresenterClass: MenuPresenter {
     private fun eventSuccess(event: EstadoAgenteEvent) {
         mView?.mostrarMsj(event.msj!!)
         // Asigna estado a agente
-        Constantes.config?.agente?.estado = event.content
+        Constantes.config?.agente?.estado = event.content!!
+        Util.guardarConfig(context)
         mView?.asignarEstado(Constantes.config?.agente?.estado?.codigo == Constantes.ESTADO_CODIGO_ACTIVO)
     }
 
@@ -72,5 +74,24 @@ class MenuPresenterClass: MenuPresenter {
     private fun eventError() {
         mView?.mostrarMsj(context.getString(R.string.no_actualizo_estado_agente))
         mView?.asignarEstado(estadoAnt)
+    }
+
+    override fun obtenerNotificaciones(context: Context) {
+        if(mView != null){
+            mView?.habilitarElementos(false)
+            mModel.obtenerNotificaciones(context)
+        }
+    }
+
+    @Subscribe
+    fun onEventNotificaciones(event: NotificacionesEvent){
+        if (mView != null){
+            mView?.habilitarElementos(true)
+
+            when(event.typeEvent){
+                Util.SUCCESS -> mView?.mostrarNotificaciones(event.content!!)
+                else -> mView?.mostrarMsj(event.msj!!)
+            }
+        }
     }
 }

@@ -7,4 +7,5 @@ interface MenuPresenter {
     fun onDestroy()
 
     fun cambiarEstado(context: Context, disponible: Boolean)
+    fun obtenerNotificaciones(context: Context)
 }

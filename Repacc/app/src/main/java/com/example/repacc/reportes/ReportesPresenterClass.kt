@@ -1,6 +1,7 @@
 package com.example.repacc.reportes
 
 import android.content.Context
+import com.example.repacc.R
 import com.example.repacc.reportes.events.ReporteEvent
 import com.example.repacc.reportes.events.ReportesEvent
 import com.example.repacc.reportes.model.ReportesModel
@@ -35,12 +36,16 @@ class ReportesPresenterClass: ReportesPresenter {
 
     override fun obtenerListaReportes(context: Context) {
         mView.let {
-            it?.mostrarProgreso(true)
-            it?.habilitarElementos(false)
-            mModel.obtenerListaReportes(
-                context,
-                Constantes.config!!.usuario!!.munNotif!!._id
-            )
+            if (Constantes.config!!.usuario!!.munNotif != null){
+                it?.mostrarProgreso(true)
+                it?.habilitarElementos(false)
+                mModel.obtenerListaReportes(
+                    context,
+                    Constantes.config!!.usuario!!.munNotif!!._id
+                )
+            }else{
+                it?.mostrarMsj(context.getString(R.string.actualizar_perfil))
+            }
         }
     }
 

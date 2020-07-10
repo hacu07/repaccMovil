@@ -17,9 +17,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.repacc.R
 import com.example.repacc.contacto.view.ContactoActivity
+import com.example.repacc.login.view.LoginActivity
 import com.example.repacc.menu.MenuPresenter
 import com.example.repacc.menu.MenuPresenterClass
+import com.example.repacc.notificaciones.view.NotificacionesActivity
 import com.example.repacc.perfil.view.PerfilActivity
+import com.example.repacc.pojo.Notificacion
 import com.example.repacc.reporte.view.ReporteActivity
 import com.example.repacc.reportes.view.ReportesActivity
 import com.example.repacc.trafico.view.TraficoActivity
@@ -226,6 +229,10 @@ class MenuActivity :
             mPresenter?.onCreate()
             swDisponible.visibility = View.VISIBLE
 
+            // Activa el switch segun estado del agente
+            swDisponible.isChecked =
+                (Constantes.config?.agente?.estado?.codigo == Constantes.ESTADO_CODIGO_ACTIVO)
+
             // Si no ha aceptado permiso
             if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED){
@@ -235,12 +242,10 @@ class MenuActivity :
                     Constantes.LOCATION_PERMISSION_REQUEST_CODE
                 )
             }else{
-                // El permiso ya se encuentra aceptado
-                swDisponible.isChecked =
-                    (Constantes.config?.agente?.estado?.codigo == Constantes.ESTADO_CODIGO_ACTIVO)
+                if(!isGpsEnabled()){
+                    showInfoAlert()
+                }
             }
-
-
         }else{
             swDisponible.visibility = View.GONE
         }
@@ -257,8 +262,23 @@ class MenuActivity :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.mnirPerfil -> irPerfil()
+            R.id.mnSesion -> cerrarSesion()
+            R.id.mnNotif -> mPresenter?.obtenerNotificaciones(this)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun cerrarSesion() {
+        // Si es agente y su estado es activo
+        if (Util.esAgente() && swDisponible.isChecked){
+            mostrarMsj(getString(R.string.desactivar_disponibilidad))
+        }else{
+            Constantes.config = null
+            Util.guardarConfig(this)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun irPerfil() {
@@ -352,5 +372,11 @@ class MenuActivity :
             mPresenter?.cambiarEstado(this,swDisponible.isChecked)
         }
         showInfoAlert()
+    }
+
+    override fun mostrarNotificaciones(notificaciones: ArrayList<Notificacion>) {
+        val intent = Intent(this,NotificacionesActivity::class.java)
+        intent.putExtra(NotificacionesActivity::class.java.name,notificaciones)
+        startActivity(intent)
     }
 }
