@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class Agente(
     val _id: String,
+    var ocupado: Boolean = false,
     val usuario: Usuario,
     var estado: Estado,
     val municipio: Municipio,

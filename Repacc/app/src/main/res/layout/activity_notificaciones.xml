@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notificaciones.view.NotificacionesActivity">
+    tools:context=".notificaciones.view.NotificacionesActivity"
+    android:background="@color/gray">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNoti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_notificacion"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

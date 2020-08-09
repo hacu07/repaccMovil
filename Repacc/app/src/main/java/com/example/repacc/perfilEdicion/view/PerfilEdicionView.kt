@@ -18,4 +18,5 @@ interface PerfilEdicionView {
     fun cargarPaises(paises: List<String>)
     fun cargarDepartamentos(departamentos: List<String>)
     fun cargarMunicipios(municipios:List<String>)
+    //fun seleccionarDepartamento(index: Int)
 }

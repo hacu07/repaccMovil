@@ -1,10 +1,13 @@
 package com.example.repacc.util
 
+import android.R
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.repacc.pojo.Config
@@ -131,7 +134,16 @@ class Util {
         fun esAgente(): Boolean {
             return Constantes.config?.agente != null
         }
+
+        /****************************************
+         * Adapter generico para los spinner
+         */
+        fun obtenerArrayAdapter(lista: List<String>, context: Context): SpinnerAdapter? {
+            val dataAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                context,
+                R.layout.simple_spinner_item, lista)
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            return dataAdapter
+        }
     }
-
-
 }

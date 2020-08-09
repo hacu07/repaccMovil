@@ -45,6 +45,8 @@
             android:label="@string/title_activity_reporte_detalle" />
         <activity android:name=".reportes.view.ReportesActivity" />
         <activity
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"
             android:name=".reporte.view.ReporteActivity"
             android:label="@string/title_activity_reporte" />
         <activity android:name=".vehiculoAgregar.view.VehiculoAgregarActivity" />

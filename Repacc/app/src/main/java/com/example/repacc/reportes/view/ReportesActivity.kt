@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.repacc.R
 import com.example.repacc.pojo.Reporte
@@ -17,7 +18,13 @@ import com.example.repacc.util.Util
 import kotlinx.android.synthetic.main.activity_reportes.*
 import java.io.Serializable
 
-class ReportesActivity : AppCompatActivity(), ReportesView, OnReporteClickListener, Serializable {
+class ReportesActivity :
+    AppCompatActivity(),
+    ReportesView,
+    OnReporteClickListener,
+    Serializable,
+    SearchView.OnQueryTextListener,
+    SearchView.OnCloseListener{
 
     private lateinit var mPresenter: ReportesPresenter
     private lateinit var mReportesAdapter: ReportesAdapter
@@ -40,6 +47,8 @@ class ReportesActivity : AppCompatActivity(), ReportesView, OnReporteClickListen
 
     private fun inicializar() {
         rvReportes.layoutManager = GridLayoutManager(this,3)
+        svReportes.setOnQueryTextListener(this)
+        svReportes.setOnCloseListener(this)
     }
 
     override fun mostrarProgreso(mostrar: Boolean) {
@@ -71,5 +80,29 @@ class ReportesActivity : AppCompatActivity(), ReportesView, OnReporteClickListen
      */
     override fun onReporteClickListener(reporte: Reporte) {
         mPresenter.obtenerReporte(this,reporte._id!!)
+    }
+
+    /*************************
+     * SearchView.OnQueryTextListener
+     */
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null && query?.trim()?.length == 6){
+            mPresenter?.obtenerListaReportesPorCodigo(this,query)
+        }else{
+            mostrarMsj(getString(R.string.cantidad_caracteres_codigo_reporte))
+        }
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return false
+    }
+
+    /**********************************
+     * SearchView.OnCloseListener
+     */
+    override fun onClose(): Boolean {
+        mPresenter?.obtenerListaReportes(this)
+        return false
     }
 }

@@ -24,9 +24,9 @@ data class Reporte(
     val departamento: String? = null,
     val municipio: String? = null,
     // Agente que reportó la falsa alarma
-    val agenteFalAlarm: Agente? = null,
-    val esFalAlarm: Boolean = false,
-    val fechaFalAlar: String? = null,
+    var agenteFalAlarm: Agente? = null,
+    var esFalAlarm: Boolean = false,
+    var fechaFalAlar: String? = null,
     val servicios: ArrayList<Tipo>?= null, // Servicios al momento de guardar
     val date: Date? =null,
     val serviciosSolicitados: ArrayList<Servicio>? = null // servicios obtenidos de la BD

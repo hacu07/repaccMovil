@@ -49,6 +49,22 @@ class ReportesPresenterClass: ReportesPresenter {
         }
     }
 
+    override fun obtenerListaReportesPorCodigo(context: Context, codigo: String) {
+        mView.let {
+            if (Constantes.config!!.usuario!!.munNotif != null){
+                it?.mostrarProgreso(true)
+                it?.habilitarElementos(false)
+                mModel.obtenerListaReportesPorCodigo(
+                    context,
+                    Constantes.config!!.usuario!!.munNotif!!._id,
+                    codigo
+                )
+            }else{
+                it?.mostrarMsj(context.getString(R.string.actualizar_perfil))
+            }
+        }
+    }
+
     override fun onCreate() {
         mView.let {
             EventBus.getDefault().register(this)

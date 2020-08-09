@@ -14,8 +14,7 @@
             android:id="@+id/etQrPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="16"/>
+            android:editable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -29,8 +28,7 @@
             android:id="@+id/etCorreoPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="16"/>
+            android:editable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,8 +42,7 @@
             android:id="@+id/etDireccionPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="16"
+            android:editable="false"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,8 +57,7 @@
             android:id="@+id/etCelularPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="16" />
+            android:editable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

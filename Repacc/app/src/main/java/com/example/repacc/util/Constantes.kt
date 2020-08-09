@@ -12,6 +12,13 @@ class Constantes {
         val ESTADO_CODIGO_ACTIVO = "T1A"
         val ESTADO_CODIGO_INACTIVO = "T1I"
 
+        val ESTADO_CODIGO_ATENDIDO = "T4A"
+
+        // Tipos
+
+        // Servicio tipo ambulancia
+        val SERVICIO_AMBULANCIA = "TSA"
+
         // Actividad (Arreglar desps)
         var vehiculoAgregar: VehiculoActivity? = null
         // Preferencias

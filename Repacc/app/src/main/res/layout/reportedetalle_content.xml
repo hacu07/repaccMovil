@@ -71,16 +71,35 @@
             android:editable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/repdet_ima"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/repdet_cvima"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="@dimen/dimen_4"
+        app:cardCornerRadius="@dimen/dimen_16"
         app:layout_constraintTop_toTopOf="@id/repdet_tilCodRep"
         app:layout_constraintStart_toEndOf="@id/glRv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/repdet_tilher"
-        android:layout_marginLeft="@dimen/dimen_4"
-        android:src="@android:drawable/ic_menu_camera"/>
+        android:layout_marginLeft="@dimen/dimen_4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        >
+            <ImageView
+                android:id="@+id/repdet_ima"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="@dimen/dimen_4"
+                android:src="@android:drawable/ic_menu_camera"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/repdet_tilDes"

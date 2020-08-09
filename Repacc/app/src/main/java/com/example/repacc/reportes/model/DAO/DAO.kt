@@ -71,4 +71,34 @@ class DAO {
             }
         })
     }
+
+    fun obtenerListaReportesPorCodigo(context: Context, idMunicipio: String, codigo: String, callback: BasicCallback){
+        val service = Util.getRetrofit().create<APIServiceRS>(APIServiceRS::class.java)
+
+        service.obtenerListaReportesPorCodigo(idMunicipio, codigo).enqueue(object : Callback<ReportesEvent>{
+            override fun onResponse(call: Call<ReportesEvent>, response: Response<ReportesEvent>) {
+                val event = response?.body()
+
+                if (event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
+                    callback.response(event)
+
+                }else{
+                    callback.response(
+                        ReportesEvent(
+                            typeEvent = Util.ERROR_RESPONSE,
+                            msj = context.getString(R.string.ERROR_RESPONSE)
+                        )
+                    )
+                }
+            }
+            override fun onFailure(call: Call<ReportesEvent>, t: Throwable) {
+                callback.response(
+                    ReportesEvent(
+                        msj = context.getString(R.string.ERROR_CONEXION)
+                    )
+                )
+            }
+        })
+    }
 }

@@ -12,4 +12,8 @@ interface APIServiceRS {
 
     @GET("reporte/basicInfo/{idCiudad}")
     fun obtenerListaReportes(@Path("idCiudad") idCiudad: String): Call<ReportesEvent>
+
+    @GET("reporte/basicInfo/{idCiudad}/{codigo}")
+    fun obtenerListaReportesPorCodigo(@Path("idCiudad") idCiudad: String,
+                                      @Path("codigo") codigo: String): Call<ReportesEvent>
 }

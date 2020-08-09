@@ -50,6 +50,8 @@ class MenuActivity :
         setContentView(R.layout.activity_menu)
         setSupportActionBar(toolbarMenu)
         mostrarSwitchDisponible()
+        mPresenter = MenuPresenterClass(this)
+        mPresenter?.onCreate()
     }
 
     override fun onDestroy() {
@@ -225,8 +227,6 @@ class MenuActivity :
 
     private fun mostrarSwitchDisponible() {
         if (Util.esAgente()){
-            mPresenter = MenuPresenterClass(this)
-            mPresenter?.onCreate()
             swDisponible.visibility = View.VISIBLE
 
             // Activa el switch segun estado del agente

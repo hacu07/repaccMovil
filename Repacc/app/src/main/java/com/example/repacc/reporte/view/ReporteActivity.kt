@@ -128,15 +128,17 @@ class ReporteActivity :
                 numHeri =  etHeridosReporte.text.toString().toInt()
             }
 
+            val direccion = addresses!![0].getAddressLine(0).split(',')
+            val lengthSplit = direccion.size
             val reporte = Reporte(
                 placas = mPlacasAdapter!!.obtenerPlacas(),
                 latlong = "${latLong!!.latitude.toString()},${latLong!!.longitude.toString()}",
                 latitud = latLong!!.latitude,
                 longitud = latLong!!.longitude,
                 direccion = addresses!![0].getAddressLine(0),
-                pais = addresses!![0].countryName,
-                departamento = addresses!![0].adminArea,
-                municipio = addresses!![0].locality,
+                pais = direccion[lengthSplit-1].trim(),//addresses!![0].countryName,
+                departamento = direccion[lengthSplit-2].trim(),//addresses!![0].adminArea,
+                municipio = direccion[lengthSplit-3].trim(),//addresses!![0].locality,
                 usuarioReg = Constantes.config!!.usuario!!,
                 servicios = servicios,
                 numHeridos = numHeri,

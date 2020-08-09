@@ -14,10 +14,8 @@ import com.bumptech.glide.Glide
 import com.example.repacc.R
 import com.example.repacc.perfilEdicion.PerfilEdicionPresenter
 import com.example.repacc.perfilEdicion.PerfilEdicionPresenterClass
-import com.example.repacc.pojo.Departamento
-import com.example.repacc.pojo.Municipio
-import com.example.repacc.pojo.Pais
-import com.example.repacc.pojo.Usuario
+import com.example.repacc.pojo.*
+import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
 import kotlinx.android.synthetic.main.activity_perfil_edicion.*
 import kotlinx.android.synthetic.main.perfil_contenido_edicion.*
@@ -30,6 +28,7 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil_edicion)
 
+        Util.getPreferences(this)
         configToolbar()
         mPresenter = PerfilEdicionPresenterClass(this)
         mPresenter?.onCreate()
@@ -38,7 +37,7 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
     }
 
     override fun configSpiRH(listaRH: List<String>) {
-        spiRHEdicion.adapter = obtenerArrayAdapter(listaRH)
+        spiRHEdicion.adapter = Util.obtenerArrayAdapter(listaRH, this)
         spiRHEdicion.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 mPresenter?.asignarRH(position)
@@ -52,6 +51,7 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
     }
 
     override fun onDestroy() {
+        Util.getPreferences(this)
         mPresenter?.onDestroy()
         super.onDestroy()
     }
@@ -80,14 +80,6 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
         super.onBackPressed()
     }
 
-    private fun obtenerArrayAdapter(lista: List<String>): SpinnerAdapter? {
-        val dataAdapter:ArrayAdapter<String> = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_spinner_item, lista)
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        return dataAdapter
-    }
-
     /**
      * PerfilEdicionView
      */
@@ -104,23 +96,22 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
     }
 
     override fun cargarPaises(paises: List<String>) {
-        spiPaisNotif.adapter = obtenerArrayAdapter(paises)
+        spiPaisNotif.adapter = Util.obtenerArrayAdapter(paises, this)
 
         spiPaisNotif.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 mPresenter?.obtenerDepartamentos(this@PerfilEdicionActivity,position)
             }
-
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
     }
 
     override fun cargarDepartamentos(departamentos: List<String>) {
-        spiDepNotif.adapter = obtenerArrayAdapter(departamentos)
+        spiDepNotif.adapter = Util.obtenerArrayAdapter(departamentos, this)
 
         spiDepNotif.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                mPresenter?.obtenerMunicipios(this@PerfilEdicionActivity,position)
+                    mPresenter?.obtenerMunicipios(this@PerfilEdicionActivity,position)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {}
@@ -128,10 +119,11 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
     }
 
     override fun cargarMunicipios(municipios: List<String>) {
-        spiMunNotif.adapter = obtenerArrayAdapter(municipios)
+        spiMunNotif.adapter = Util.obtenerArrayAdapter(municipios, this)
 
         spiMunNotif.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                mPresenter?.siCargoMunNotifUsuario(true)
                 mPresenter?.asignarMunicipio(position)
             }
 

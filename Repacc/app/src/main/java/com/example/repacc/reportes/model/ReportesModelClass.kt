@@ -35,7 +35,17 @@ class ReportesModelClass : ReportesModel {
         })
     }
 
+    override fun obtenerListaReportesPorCodigo(context: Context, idMunicipio: String, codigo: String) {
+        mDAO.obtenerListaReportesPorCodigo(context, idMunicipio, codigo, object: BasicCallback{
+            override fun response(event: Any) {
+                postListaReportes(event as ReportesEvent)
+            }
+        })
+    }
+
     fun postListaReportes(reportesEvent: ReportesEvent) {
         EventBus.getDefault().post(reportesEvent)
     }
+
+
 }

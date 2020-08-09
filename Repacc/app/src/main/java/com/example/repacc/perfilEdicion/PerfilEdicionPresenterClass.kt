@@ -25,11 +25,14 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
     private var mModel:PerfilEdicionModel? = null
     private var usuarioModif:Usuario? = Constantes.config?.usuario
 
-    private var paises:List<Pais>? = null
-    private var departamentos:List<Departamento>? = null
-    private var municipios:List<Municipio>? = null
+    private var paises:ArrayList<Pais>? = null
+    private var departamentos:ArrayList<Departamento>? = null
+    private var municipios:ArrayList<Municipio>? = null
 
     private val listaRh = listOf("Seleccione","A-","A+","O-","O+","B-","B+","AB-","AB+")
+
+    // Si selecciono la primera vez el departamento del usuario
+    var siCargoMunNotifUser = false
 
     constructor(perfilView: PerfilEdicionActivity){
         this.mView = perfilView
@@ -62,7 +65,7 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
     }
 
     override fun asignarMunicipio(position: Int) {
-            usuarioModif?.munNotif = municipios?.get(position)
+        usuarioModif?.munNotif = municipios?.get(position)
     }
 
     override fun onCreate() {
@@ -120,11 +123,30 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
         }
     }
 
+
+
     private fun obtenerNombresPaises(lista: List<Pais>): List<String> {
         val nombrePais= mutableListOf<String>()
-
+        var posPaisNotif = -1
+        var contador = 0
         lista.forEach {
             nombrePais.add(it.nombre)
+
+            if (Constantes.config?.usuario?.munNotif?.departamento?.pais?.nombre != null && !siCargoMunNotifUser){
+                if(it.nombre == (Constantes.config?.usuario?.munNotif?.departamento?.pais?.nombre))
+                    posPaisNotif = contador
+            }
+
+            contador++
+        }
+
+        // Deja de primero el pais del usuario
+        if (posPaisNotif != -1){
+            nombrePais.remove(lista[posPaisNotif].nombre)
+            nombrePais.add(0,lista[posPaisNotif].nombre)
+            val paisSave = paises!![posPaisNotif]
+            paises?.removeAt(posPaisNotif)
+            paises?.add(0, paisSave)
         }
 
         return nombrePais
@@ -132,17 +154,52 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
 
     private fun obtenerNombresDptos(lista: List<Departamento>): List<String> {
         val nombreDpto= mutableListOf<String>()
+        var posDptoNotif = -1
+        var contador = 0
         lista.forEach {
             nombreDpto.add(it.nombre)
+            if (Constantes.config?.usuario?.munNotif?.departamento?.nombre != null && !siCargoMunNotifUser){
+                if(it.nombre == (Constantes.config?.usuario?.munNotif?.departamento?.nombre))
+                    posDptoNotif = contador
+            }
+            contador++
         }
+
+        // Deja de primero el dpto del usuario
+        if (posDptoNotif != -1){
+            nombreDpto.remove(lista[posDptoNotif].nombre)
+            nombreDpto.add(0,lista[posDptoNotif].nombre)
+            val dptoSave = departamentos!![posDptoNotif]
+            departamentos?.removeAt(posDptoNotif)
+            departamentos?.add(0, dptoSave)
+        }
+
         return nombreDpto
     }
 
     private fun obtenerNombresMuni(lista: List<Municipio>): List<String> {
         val nombreMuncp= mutableListOf<String>()
+        var posCityNotif = -1
+        var contador = 0
+
         lista.forEach {
             nombreMuncp.add(it.nombre)
+            if (Constantes.config?.usuario?.munNotif?.nombre != null && !siCargoMunNotifUser){
+                if(it.nombre == (Constantes.config?.usuario?.munNotif?.nombre))
+                    posCityNotif = contador
+            }
+            contador++
         }
+
+        // Deja de primero el dpto del usuario
+        if (posCityNotif != -1){
+            nombreMuncp.remove(lista[posCityNotif].nombre)
+            nombreMuncp.add(0,lista[posCityNotif].nombre)
+            val citySave = municipios!![posCityNotif]
+            municipios?.removeAt(posCityNotif)
+            municipios?.add(0, citySave)
+        }
+
         return nombreMuncp
     }
 
@@ -174,9 +231,10 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
             when(dptoEvent.typeEvent){
                 Util.SUCCESS -> {
                     departamentos = dptoEvent.content
-                    departamentos?.let { mView?.cargarDepartamentos(obtenerNombresDptos(it)) }
+                    departamentos?.let {
+                        mView?.cargarDepartamentos(obtenerNombresDptos(it))
+                    }
                 }
-
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->
                     dptoEvent.msj?.let { msj -> mView?.mostrarMsj(msj) }
 
@@ -195,10 +253,8 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
                     municipios = municipioEvent.content
                     municipios?.let { mView?.cargarMunicipios(obtenerNombresMuni(it)) }
                 }
-
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->
                     municipioEvent.msj?.let { msj -> mView?.mostrarMsj(msj) }
-
             }
         }
     }
@@ -219,5 +275,14 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
                     event.msj?.let { mView?.mostrarMsj(it) }
             }
         }
+    }
+
+    /****************************************************
+     * Indica si ya se cargó por primera vez el municipio del usuario
+     * en los spinners de la UI
+     * HAROLDC 01/08/2020
+     */
+    override fun siCargoMunNotifUsuario(siCargo: Boolean) {
+        this.siCargoMunNotifUser = siCargo
     }
 }

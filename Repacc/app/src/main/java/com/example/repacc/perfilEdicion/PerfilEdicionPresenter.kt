@@ -10,6 +10,8 @@ interface PerfilEdicionPresenter {
     fun asignarMunicipio(position: Int)
     fun editarPerfil(context: Context)
 
+    fun siCargoMunNotifUsuario(siCargo: Boolean)
+
     fun obtenerPaises(context: Context)
     fun obtenerDepartamentos(context: Context, seleccion: Int)
     fun obtenerMunicipios(context: Context, seleccion: Int)
