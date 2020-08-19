@@ -85,8 +85,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-        >
+            android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/repdet_ima"
                 android:layout_width="0dp"
@@ -95,7 +94,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginLeft="@dimen/dimen_4"
                 android:src="@android:drawable/ic_menu_camera"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

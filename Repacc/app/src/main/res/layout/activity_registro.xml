@@ -10,15 +10,25 @@
 
     <TextView
         android:id="@+id/tvInicioSesion"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registro"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/text_32"
         android:layout_marginTop="@dimen/dimen_16"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tilUsuario"
-        app:layout_constraintEnd_toEndOf="@id/tilUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ProgressBar
+        android:id="@+id/pbRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_4"
+        app:layout_constraintTop_toTopOf="@id/tvInicioSesion"
+        app:layout_constraintStart_toEndOf="@id/tvInicioSesion"
+        app:layout_constraintBottom_toBottomOf="@id/tvInicioSesion"
+        android:visibility="gone"
         />
 
     <com.google.android.material.textfield.TextInputLayout

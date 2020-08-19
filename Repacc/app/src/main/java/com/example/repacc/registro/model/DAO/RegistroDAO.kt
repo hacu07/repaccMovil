@@ -28,7 +28,6 @@ class RegistroDAO {
                         callbackRegistro.onSuccess(registroEvent)
                     else
                         callbackRegistro.onError(RegistroEvent(typeEvent = Util.ERROR_RESPONSE, msj = "Error de respuesta."))
-
                 }
 
                 override fun onFailure(call: Call<RegistroEvent>, t: Throwable) {

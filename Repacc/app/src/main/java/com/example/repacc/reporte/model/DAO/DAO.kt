@@ -3,6 +3,7 @@ package com.example.repacc.reporte.model.DAO
 import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.pojo.Reporte
+import com.example.repacc.reportes.events.ReporteEvent
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Util
@@ -45,7 +46,42 @@ class DAO {
     fun registrarReporte(context: Context, reporte: Reporte, callback: BasicCallback){
         val service = Util.getRetrofit().create<APIServiceRP>(APIServiceRP::class.java)
 
-        service.registrarReporte(reporte).enqueue(object: Callback<BasicEvent>{
+        service.registrarReporte(reporte).enqueue(object: Callback<ReporteEvent>{
+            override fun onResponse(call: Call<ReporteEvent>, response: Response<ReporteEvent>) {
+                val response = response?.body()
+
+                if(response != null){
+                    response.typeEvent = if(!response.error) Util.SUCCESS else Util.ERROR_DATA
+                    callback.response(response)
+                }else{
+                    callback.response(
+                        ReporteEvent(
+                            typeEvent = Util.ERROR_RESPONSE,
+                            msj= context.getString(R.string.ERROR_RESPONSE)
+                        )
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<ReporteEvent>, t: Throwable) {
+                callback.response(
+                    ReporteEvent(
+                        msj = context.getString(R.string.ERROR_CONEXION)
+                    )
+                )
+            }
+        })
+    }
+
+    /*******************************
+     * Actualiza la imagen del reporte en mongodb, si y solo si,
+     * se almaceno correctamente en firebase storage
+     * HAROLDC 11/08/2020
+     */
+    fun actualizarImagen(context: Context, reporte: Reporte, callback: BasicCallback) {
+        val service = Util.getRetrofit().create(APIServiceRP::class.java)
+
+        service.actualizarImagen(reporte).enqueue(object : Callback<BasicEvent>{
             override fun onResponse(call: Call<BasicEvent>, response: Response<BasicEvent>) {
                 val response = response?.body()
 
@@ -69,7 +105,6 @@ class DAO {
                     )
                 )
             }
-
         })
     }
 }

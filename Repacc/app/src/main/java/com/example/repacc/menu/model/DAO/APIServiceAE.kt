@@ -11,7 +11,7 @@ import retrofit2.http.Path
 
 interface APIServiceAE {
     @GET("notificacion/{idUsuario}")
-    fun obtenerNotificaciones(@Path("idUsuario") idUsiario: String): Call<NotificacionesEvent>
+    fun obtenerNotificaciones(@Path("idUsuario") idUsuario: String): Call<NotificacionesEvent>
 
     @PUT("agente/estado")
     fun cambiarEstado(@Body agente: Agente): Call<EstadoAgenteEvent>

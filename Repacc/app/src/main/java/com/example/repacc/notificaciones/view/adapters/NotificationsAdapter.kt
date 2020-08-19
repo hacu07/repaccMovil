@@ -2,6 +2,7 @@ package com.example.repacc.notificaciones.view.adapters
 
 import android.content.Context
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class NotificationsAdapter(
             notificacion: Notificacion,
             context: Context,
             listener: OnNotificationClickListener) = with(itemView){
+            Log.i("REPACC1",notificacion._id)
             itmNot_titulo.setText(context.getString(R.string.titulo_notif_report,notificacion.reporte.codigo!!))
             //itmNot_resumen.setText(context.getString(R.string.resumen_notif_report,notificacion.reporte.direccion!!))
             itmNot_resumen.setText(notificacion.mensaje)

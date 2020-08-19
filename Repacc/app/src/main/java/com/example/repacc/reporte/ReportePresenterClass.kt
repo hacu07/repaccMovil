@@ -1,11 +1,13 @@
 package com.example.repacc.reporte
 
 import android.content.Context
+import android.net.Uri
 import com.example.repacc.pojo.Reporte
 import com.example.repacc.reporte.model.ReporteModel
 import com.example.repacc.reporte.model.ReporteModelClass
 import com.example.repacc.reporte.view.ReporteActivity
 import com.example.repacc.reporte.view.ReporteView
+import com.example.repacc.reportes.events.ReporteEvent
 import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Util
 import com.example.repacc.vehiculoAgregar.events.TipoEvent
@@ -41,11 +43,15 @@ class ReportePresenterClass: ReportePresenter {
         }
     }
 
-    override fun registrarReporte(context: Context, reporte: Reporte) {
+    override fun registrarReporte(
+        context: Context,
+        reporte: Reporte,
+        mPhotoSelectedUri: Uri
+    ) {
         if (mView != null){
             mView?.mostrarProgreso(true)
             mView?.habilitarElementos(false)
-            mModel.registrarReporte(context,reporte)
+            mModel.registrarReporte(context,reporte,mPhotoSelectedUri)
         }
     }
 
@@ -67,7 +73,7 @@ class ReportePresenterClass: ReportePresenter {
     }
 
     @Subscribe
-    fun onReporteEventListener(event: BasicEvent){
+    fun onReporteEventListener(event: ReporteEvent){
         if (mView != null){
             mView?.mostrarProgreso(false)
             mView?.habilitarElementos(true)

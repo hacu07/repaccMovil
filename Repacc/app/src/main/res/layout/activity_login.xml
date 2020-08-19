@@ -18,7 +18,18 @@
         android:layout_marginTop="@dimen/dimen_16"
         app:layout_constraintBottom_toTopOf="@id/tilUsuario"
         app:layout_constraintStart_toStartOf="@id/tilContrasena"
-        app:layout_constraintEnd_toEndOf="@id/tilContrasena"
+        />
+
+    <ProgressBar
+        android:id="@+id/pbLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/tvInicioSesion"
+        app:layout_constraintStart_toEndOf="@id/tvInicioSesion"
+        app:layout_constraintBottom_toBottomOf="@id/tvInicioSesion"
+        android:layout_marginLeft="@dimen/dimen_8"
+        style="?android:attr/progressBarStyleSmall"
+        android:visibility="gone"
         />
 
     <com.google.android.material.textfield.TextInputLayout

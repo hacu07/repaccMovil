@@ -2,67 +2,78 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/dimen_256"
     app:cardCornerRadius="@dimen/dimen_8"
     android:layout_margin="@dimen/dimen_8"
     android:padding="@dimen/dimen_4">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/itmVeh_foto"
-            android:layout_width="@dimen/dimen_128"
-            android:layout_height="@dimen/dimen_128"
-            android:padding="@dimen/dimen_8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:src="@android:drawable/ic_menu_camera"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/itmVeh_placa"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/placa"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_18"
-            android:textStyle="bold"
-            android:layout_margin="@dimen/dimen_8"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/itmVeh_foto"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
-        <TextView
-            android:id="@+id/itmVeh_marca"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/marca"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_16"
-            android:layout_margin="@dimen/dimen_8"
-            app:layout_constraintTop_toBottomOf="@id/itmVeh_placa"
-            app:layout_constraintStart_toEndOf="@id/itmVeh_foto"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/black_gradient">
 
-        <TextView
-            android:id="@+id/itmVeh_modelo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/modelo"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_16"
-            android:layout_margin="@dimen/dimen_8"
-            app:layout_constraintTop_toBottomOf="@id/itmVeh_marca"
-            app:layout_constraintStart_toEndOf="@id/itmVeh_foto"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+            <TextView
+                android:id="@+id/itmVeh_placa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/placa"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dimen_2"
+                app:layout_constraintBottom_toTopOf="@id/itmVeh_marca"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/itmVeh_marca"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/marca"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dimen_2"
+                app:layout_constraintBottom_toTopOf="@id/itmVeh_modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/itmVeh_modelo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/modelo"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_18"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dimen_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

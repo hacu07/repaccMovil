@@ -47,7 +47,10 @@ class RegistroPresenterClass: RegistroPresenter {
             mView?.ocultarProgreso()
 
             when(registroEvent.typeEvent){
-                Util.SUCCESS -> registroEvent.msj?.let { mView?.mostrarMsj(it) }
+                Util.SUCCESS -> registroEvent.msj?.let {
+                    mView?.mostrarMsj(it)
+                    mView?.irLogin()
+                }
                 Util.ERROR_RESPONSE,Util.ERROR_DATA, Util.ERROR_CONEXION ->{
                     registroEvent?.msj?.let { mView?.mostrarMsj(it) }
                 }

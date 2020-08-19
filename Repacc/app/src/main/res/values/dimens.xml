@@ -7,10 +7,13 @@
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_18">18sp</dimen>
     <dimen name="dimen_128">128dp</dimen>
+    <dimen name="dimen_256">256dp</dimen>
     <dimen name="dimen_64">64dp</dimen>
     <dimen name="text_15">15sp</dimen>
     <dimen name="dimen_12">12sp</dimen>
     <dimen name="dimen_4">4dp</dimen>
     <dimen name="text_8">8sp</dimen>
     <dimen name="text_10">10sp</dimen>
+    <dimen name="dimen_48">48dp</dimen>
+    <dimen name="dimen_2">2dp</dimen>
 </resources>

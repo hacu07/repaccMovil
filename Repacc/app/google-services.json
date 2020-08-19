@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "431169824045",
+    "firebase_url": "https://repacc-cf474.firebaseio.com",
+    "project_id": "repacc-cf474",
+    "storage_bucket": "repacc-cf474.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431169824045:android:47809f60c4ce5fd1dd5fa4",
+        "android_client_info": {
+          "package_name": "com.example.repacc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431169824045-26mdpp7duk8dfjg81ltpi36j6vo5opet.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.repacc",
+            "certificate_hash": "7a38c7e7b2ee9e05fb2c6bb82f51c4bf5e0a6108"
+          }
+        },
+        {
+          "client_id": "431169824045-rrs5sbmjstbgu3p1j3f8iso4b2ndi1cb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwCbuUTincmfFqVbawMexq2Fg6XkZNsQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431169824045-rrs5sbmjstbgu3p1j3f8iso4b2ndi1cb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

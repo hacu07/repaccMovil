@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.repacc.R
+import com.example.repacc.login.view.LoginActivity
 import com.example.repacc.main.MainActivity
 import com.example.repacc.pojo.Usuario
 import com.example.repacc.registro.RegistroPresenter
@@ -54,26 +55,38 @@ class RegistroActivity : AppCompatActivity(), RegistroView {
      * Interface RegistroView
      *****************************************/
     override fun habilitarElementos() {
-
+        tilNombre.isEnabled = true
+        tilUsuario.isEnabled = true
+        tilContrasena.isEnabled = true
+        tilCorreo.isEnabled = true
+        tilCelular.isEnabled = true
+        btnIngreso.isEnabled = true
     }
 
     override fun inhabilitarElementos() {
-
+        tilNombre.isEnabled = false
+        tilUsuario.isEnabled = false
+        tilContrasena.isEnabled = false
+        tilCorreo.isEnabled = false
+        tilCelular.isEnabled = false
+        btnIngreso.isEnabled = false
     }
 
     override fun mostrarProgreso() {
-
+        pbRegistro.visibility = View.VISIBLE
     }
 
     override fun ocultarProgreso() {
-
+        pbRegistro.visibility = View.GONE
     }
 
     override fun mostrarMsj(msj: String) {
         Util.mostrarToast(this, msj)
     }
 
-    override fun irLogin(usuario: Usuario) {
-
+    override fun irLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

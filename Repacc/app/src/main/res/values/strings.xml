@@ -56,7 +56,7 @@
     <string name="numero_heridos">Numero heridos</string>
     <string name="descripcion">Descripción</string>
     <string name="agregar_imagen">Agregar Imagen</string>
-    <string name="msj_permiso_ubicacion">Pare continuar, debe aceptar el permiso de ubicación.</string>
+    <string name="msj_permiso_ubicacion">Debe aceptar el permiso de ubicación.</string>
     <string name="titulo_encender_gps">Señal GPS</string>
     <string name="activar_gps">No tiene el GPS encendido, desea encender la señal GPS para continuar?</string>
     <string name="cancelar">Cancelar</string>
@@ -95,4 +95,11 @@
     <string name="descripcion_de_lo_ocurrido">Descripción de lo ocurrido:</string>
     <string name="valide_reporte">Debe validar el reporte.</string>
     <string name="cantidad_caracteres_codigo_reporte">El código a buscar debe ser de 6 dígitos.</string>
+    <string name="cargar_imagen_reporte">Seleccionar imagen</string>
+    <string name="seleccion_carga_imagen">Seleccione de donde desea cargar la imagen:</string>
+    <string name="camara">Camara</string>
+    <string name="galeria">Galeria</string>
+    <string name="error_load_image">No se logró cargar la imagen.</string>
+    <string name="report_error_invalid_image">Imagen no valida.</string>
+    <string name="report_error_imageUpdated">No se logró cargar la imagen.</string>
 </resources>

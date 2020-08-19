@@ -31,13 +31,18 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     fun login(view: View) {
-        mPresenter?.validarUsuario(
-            this,
-            Usuario(
-                usuario = etUsuario.text.toString().trim(),
-                contrasena = etContrasena.text.toString().trim()
+        if (!etUsuario.text.toString().isNullOrEmpty() &&
+            !etContrasena.text.toString().isNullOrEmpty()){
+            mPresenter?.validarUsuario(
+                this,
+                Usuario(
+                    usuario = etUsuario.text.toString().trim(),
+                    contrasena = etContrasena.text.toString().trim()
+                )
             )
-        )
+        }else{
+            mostrarMsj(getString(R.string.falta_datos))
+        }
     }
 
     override fun onBackPressed() {
@@ -51,19 +56,23 @@ class LoginActivity : AppCompatActivity(), LoginView {
      * LOGIN VIEW
      */
     override fun habilitarElementos() {
-
+        pbLogin.visibility = View.GONE
+        tilUsuario.isEnabled = true
+        tilContrasena.isEnabled = true
+        btnIngreso.isEnabled = true
     }
 
     override fun inhabilitarElementos() {
-
+        pbLogin.visibility = View.VISIBLE
+        tilUsuario.isEnabled = false
+        tilContrasena.isEnabled = false
+        btnIngreso.isEnabled = false
     }
 
     override fun mostrarDialogo() {
-
     }
 
     override fun ocultarDialogo() {
-
     }
 
     override fun mostrarMsj(msj: String) {

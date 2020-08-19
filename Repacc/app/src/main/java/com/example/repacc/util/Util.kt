@@ -4,8 +4,9 @@ import android.R
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import android.widget.Toast
@@ -20,12 +21,23 @@ class Util {
     //Elementos estaticos
     companion object {
 
+        val IMAGE_HEIGHT: Int = 512
+        val STORAGE_REFERENCE_REPORTS: String = "reportes"
         lateinit var URL_API: String
 
         val SUCCESS = 0
         val ERROR_DATA = 100
         val ERROR_RESPONSE = 101
         val ERROR_CONEXION = 102
+
+        // Permisos
+        val RP_STORAGE = 121 // Request permission
+        val RP_CAMERA = 122
+
+        val RC_GALLERY = 21 // Request Code
+        val RC_CAMERA = 22
+
+        val ROTATE_90 = 90F
 
         fun getRetrofit(): Retrofit {
             return Retrofit.Builder()
@@ -144,6 +156,24 @@ class Util {
                 R.layout.simple_spinner_item, lista)
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             return dataAdapter
+        }
+
+        /*****************************************
+         * Rota Bitmap 90 grados
+         */
+        fun rotateBitmap(original: Bitmap, degrees: Float): Bitmap? {
+            val matrix = Matrix()
+            matrix.postRotate(degrees)
+            val scaledBitmap = Bitmap.createScaledBitmap(original, original.width, original.height, true)
+            return Bitmap.createBitmap(
+                scaledBitmap,
+                0,
+                0,
+                scaledBitmap.width,
+                scaledBitmap.height,
+                matrix,
+                true
+            )
         }
     }
 }

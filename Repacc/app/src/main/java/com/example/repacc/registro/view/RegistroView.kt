@@ -12,6 +12,6 @@ interface RegistroView {
     fun mostrarMsj(msj: String)
 
     // Si el usuario se registro correctamente
-    fun irLogin(usuario: Usuario)
+    fun irLogin()
 
 }

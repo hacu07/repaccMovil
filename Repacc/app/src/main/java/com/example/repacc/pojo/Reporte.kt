@@ -14,7 +14,7 @@ data class Reporte(
     val direccion: String? = null,
     val descripcion: String? = null,
     val estado: Estado? = null,
-    val imagen: String?= null,
+    var imagen: String?= null,
     val imgValid: Boolean = false,
     val numHeridos: Int = 0,
     val usuarioReg: Usuario? = null,

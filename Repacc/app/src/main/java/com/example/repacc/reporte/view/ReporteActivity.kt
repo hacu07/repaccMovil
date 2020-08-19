@@ -1,26 +1,32 @@
 package com.example.repacc.reporte.view
 
 import android.Manifest
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AlertDialog
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.repacc.BuildConfig
 import com.example.repacc.R
 import com.example.repacc.pojo.Reporte
 import com.example.repacc.pojo.Tipo
@@ -33,16 +39,20 @@ import com.example.repacc.reporte.view.adapters.ServiciosAdapter
 import com.example.repacc.util.AlertCallback
 import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
-import com.google.android.gms.location.LocationListener
-import com.google.android.gms.maps.*
-
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_reporte.*
 import kotlinx.android.synthetic.main.content_reporte.*
-import java.lang.Exception
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -75,6 +85,14 @@ class ReporteActivity :
     private var placas: ArrayList<String>? = null
     private var addresses : List<Address>? = null
     private var latLong : LatLng? = null
+
+    // Imagen reporte
+    private lateinit var mCurrentPhotoPath : String
+    private lateinit var mPhotoSelectedUri: Uri
+    private lateinit var bitmap: Bitmap
+
+    private val MY_PHOTO = "my_photo" // Nombre de foto, nombre local y en nube
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,7 +162,7 @@ class ReporteActivity :
                 numHeridos = numHeri,
                 descripcion = etDescripReporte.text.toString().trim()
             )
-            mPresenter.registrarReporte(this,reporte)
+            mPresenter.registrarReporte(this,reporte,mPhotoSelectedUri)
         }
     }
 
@@ -207,8 +225,11 @@ class ReporteActivity :
         // Acepto los permisos
         if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             ejecutarPermisos(requestCode)
-        }else{
-            // No Acepto los permisos
+        }
+        // Si no acepto el permiso de ubicacion
+        else if (requestCode == Constantes.LOCATION_PERMISSION_REQUEST_CODE &&
+            !(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) ){
+            // No Acepto los permisos de ubicacion
             mostrarMsj( getString(R.string.msj_permiso_ubicacion))
             finish()
         }
@@ -221,6 +242,7 @@ class ReporteActivity :
     * */
     private fun ejecutarPermisos(requestCode: Int) {
         when(requestCode){
+            // Acepto el permiso de ubicacion
             Constantes.LOCATION_PERMISSION_REQUEST_CODE -> {
                 // Valida si no tiene el gps del dispositivo encendido
                 if (!isGpsEnabled()){
@@ -235,6 +257,11 @@ class ReporteActivity :
                         actualizarLocation(currentLocation!!.latitude, currentLocation!!.longitude)
                     }
                 }
+            }
+
+            // Acepto el permiso de galeria
+            Util.RC_GALLERY -> {
+                fromGallery()
             }
         }
     }
@@ -545,4 +572,187 @@ class ReporteActivity :
         }
     }
 
+    /****************************************
+     * Carga imagen desde galeria o camara
+     */
+    fun cargarImagen(view: View) {
+        Util.showInfoAlert(
+            context = this,
+            title = getString(R.string.cargar_imagen_reporte),
+            msg = getString(R.string.seleccion_carga_imagen),
+            textBtnPos = getString(R.string.camara),
+            textBtnNeg = getString(R.string.galeria),
+            callback = object: AlertCallback{
+                override fun onClickPositive() {
+                    // Camara
+                    checkPermissionToApp(Manifest.permission.READ_EXTERNAL_STORAGE, Util.RP_CAMERA)
+                }
+
+                override fun onClickNegative() {
+                    // Galeria
+                    checkPermissionToApp(Manifest.permission.READ_EXTERNAL_STORAGE, Util.RP_STORAGE)
+                }
+            }
+        )
+    }
+
+    /*********************************
+     * Sirve para solicitar servicios
+     * NO SE USA
+     */
+    private fun checkPermissionToApp(permissionStr: String, requestPermission: Int) {
+        // Valida los permisos
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (ContextCompat.checkSelfPermission(this,permissionStr) != PackageManager.PERMISSION_GRANTED){
+                // Si el permiso no se ha concedido, se solicita
+                val arrayPermission = arrayOf(permissionStr)
+                ActivityCompat.requestPermissions(this,arrayPermission, requestPermission)
+                return // Corta proceso y queda a la espera de la respuesta del usuario
+            }
+        }
+
+        when(requestPermission){
+            Util.RP_STORAGE -> {
+                fromGallery()
+            }
+            Util.RP_CAMERA->{
+                dispacthTakePictureIntent()
+            }
+        }
+    }
+
+    private fun dispacthTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(packageManager) != null) {
+            val photoFile: File?
+            photoFile = CreateImageFile()
+            if (photoFile != null) {
+                //Extrae ubicacion del archivo del fileprovider (facilita de forma segura compartir archivos asociados a la app)
+                val photoUri: Uri = FileProvider.getUriForFile(
+                    this,
+                    BuildConfig.APPLICATION_ID + ".provider", photoFile
+                )
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+                startActivityForResult(takePictureIntent, Util.RC_CAMERA)
+            }
+        }
+    }
+
+    private fun CreateImageFile(): File? {
+        val timestamp: String =
+            SimpleDateFormat("dd-MM-yyyy_HHmmss", Locale.ROOT).format(Date())
+        val imageFileName: String = MY_PHOTO.toString() + timestamp + "_"
+
+        //Directorio unico donde se aloja la imagen
+
+        //Directorio unico donde se aloja la imagen
+        val storageDir =
+            getExternalFilesDir(Environment.DIRECTORY_PICTURES) //Hace que las fotos sean solo privadas para la app
+
+
+        var image: File? = null
+
+        try {
+            image = File.createTempFile(imageFileName, ".jpg", storageDir)
+            //Extrae ruta de la imagen temporal
+            mCurrentPhotoPath = image.absolutePath
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return image
+    }
+
+    /*********************************
+     * Obtiene imagen desde la galeria
+     */
+    private fun fromGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, Util.RC_GALLERY)
+    }
+
+    /*********************************+
+     * Respuesta a Activity for result
+     * se usa para obtener imagen de la galeria o de la camara
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            // Controla respuesta desde la galeria o camara
+            when(requestCode){
+                // Respuesta de la galeria
+                Util.RC_GALLERY -> {
+                    getImageFromGallery(data)
+                }
+
+                // Respuesta de la camara
+                Util.RC_CAMERA -> {
+                    mPhotoSelectedUri = addPicGallery()!!
+                    var bitmap: Bitmap? = null
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(
+                            this.contentResolver,
+                            mPhotoSelectedUri
+                        )
+                        this.bitmap = bitmap
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                    asignarImagenReporte(bitmap)
+                    rotarImgRep.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    private fun asignarImagenReporte(bitmap: Bitmap?) {
+        fotoReporte.setImageBitmap(bitmap)
+        fotoReporte.scaleType = ImageView.ScaleType.CENTER_INSIDE
+        fotoReporte.layoutParams.height = Util.IMAGE_HEIGHT
+        fotoReporte.requestLayout()
+    }
+
+    /*******************************
+     * Carga la imagen tomada desde la galeria
+     */
+    private fun getImageFromGallery(data: Intent?) {
+        if (data != null){
+            mPhotoSelectedUri = data.data!!
+
+            try {
+                //Contiene el bitmap segun la Uri especificada
+                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, mPhotoSelectedUri)
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
+                asignarImagenReporte(bitmap)
+                rotarImgRep.visibility = View.VISIBLE
+            }catch (e: Exception){
+                mostrarMsj(getString(R.string.error_load_image))
+            }
+        }
+    }
+
+    fun rotarImagenReporte(view: View) {
+        if (this.bitmap != null){
+            val bitmap: Bitmap? = Util.rotateBitmap(this.bitmap, Util.ROTATE_90 )
+            if (bitmap != null){
+                this.bitmap = bitmap
+                fotoReporte.setImageBitmap(bitmap)
+            }
+        }
+    }
+
+    //Imagen de la camara
+    private fun addPicGallery(): Uri? {
+        // Indica que se escanee el archivo y lo añade a la BD multimedia del dispositivo -  si no, no aparece en galeria
+        val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+        val file = File(mCurrentPhotoPath)
+        val contentUri = Uri.fromFile(file) // Envia desde una Uri
+        mediaScanIntent.data = contentUri // Envia como parametro
+        this.sendBroadcast(mediaScanIntent)
+        //mCurrentPhotoPath = null
+        return contentUri
+    }
 }
