@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Util.URL_API = getString(R.string.url_api)
+        Util.URL_SOCKET = getString(R.string.url_socket)
         validaSesion()
     }
 

@@ -12,6 +12,6 @@ interface ReportePresenter {
     fun registrarReporte(
         context: Context,
         reporte: Reporte,
-        mPhotoSelectedUri: Uri
+        mPhotoSelectedUri: Uri?
     )
 }

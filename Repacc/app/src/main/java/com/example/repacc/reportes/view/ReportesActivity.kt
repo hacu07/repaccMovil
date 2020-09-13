@@ -86,7 +86,7 @@ class ReportesActivity :
      * SearchView.OnQueryTextListener
      */
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if (query != null && query?.trim()?.length == 6){
+        if (!query.isNullOrEmpty()){
             mPresenter?.obtenerListaReportesPorCodigo(this,query)
         }else{
             mostrarMsj(getString(R.string.cantidad_caracteres_codigo_reporte))

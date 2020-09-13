@@ -1,3 +1,4 @@
+
 package com.example.repacc.menu.view
 
 import android.Manifest
@@ -7,12 +8,12 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.repacc.R
@@ -28,11 +29,13 @@ import com.example.repacc.reportes.view.ReportesActivity
 import com.example.repacc.trafico.view.TraficoActivity
 import com.example.repacc.util.AlertCallback
 import com.example.repacc.util.Constantes
+import com.example.repacc.util.SocketRepacc
 import com.example.repacc.util.Util
 import com.example.repacc.vehiculo.view.VehiculoActivity
-import com.google.android.gms.maps.model.LatLng
+import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.activity_menu.*
-import java.lang.Exception
+import org.json.JSONObject
+
 
 class MenuActivity :
     AppCompatActivity(),
@@ -45,6 +48,10 @@ class MenuActivity :
     private lateinit var locationManager: LocationManager
     private  var currentLocation: Location? = null // Gestionar la ubicacion actual
 
+    // Sockets Listeners
+    private var mSocketConnectListener : Emitter.Listener?  = null
+    private var mSocketNotificationListener : Emitter.Listener?  = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -52,13 +59,25 @@ class MenuActivity :
         mostrarSwitchDisponible()
         mPresenter = MenuPresenterClass(this)
         mPresenter?.onCreate()
+
+        SocketRepacc.init()
+        SocketRepacc.mSocket.let {
+            setListeners()
+            it!!.connect()
+        }
+
     }
 
     override fun onDestroy() {
+        super.onDestroy()
+        SocketRepacc.mSocket.let {
+            it!!.disconnect()
+            offListeners()
+        }
+
         if (mPresenter != null){
             mPresenter?.onDestroy()
         }
-        super.onDestroy()
     }
 
     override fun onResume() {
@@ -378,5 +397,32 @@ class MenuActivity :
         val intent = Intent(this,NotificacionesActivity::class.java)
         intent.putExtra(NotificacionesActivity::class.java.name,notificaciones)
         startActivity(intent)
+    }
+
+    /**************************************************************+
+     * Socket Listeners
+     */
+    private fun setListeners() {
+        // Socket de conexión
+        mSocketConnectListener = Emitter.Listener { args ->
+            runOnUiThread {
+                mPresenter?.initSocket(args)
+            }
+        }
+        SocketRepacc.connectListener(mSocketConnectListener!!)
+
+        // Socket de notification
+        mSocketNotificationListener = Emitter.Listener {args ->
+            runOnUiThread{
+                val data = args[0] as JSONObject
+                mostrarMsj(data.optString("mensaje"))
+            }
+        }
+        SocketRepacc.notificationListeners(mSocketNotificationListener!!)
+    }
+
+    private fun offListeners() {
+        mSocketConnectListener.let { SocketRepacc.mSocket?.off(Util.NEW_SOCKET_CONNECTION, it!!) }
+        mSocketNotificationListener.let { SocketRepacc.mSocket?.off(Util.SOCKET_NOTIFICATION, it!!)}
     }
 }

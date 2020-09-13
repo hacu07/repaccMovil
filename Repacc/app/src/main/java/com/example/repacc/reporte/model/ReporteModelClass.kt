@@ -39,7 +39,7 @@ class ReporteModelClass: ReporteModel {
     override fun registrarReporte(
         context: Context,
         reporte: Reporte,
-        mPhotoSelectedUri: Uri
+        mPhotoSelectedUri: Uri?
     ) {
         mDAO.registrarReporte(context,reporte,object: BasicCallback{
             override fun response(event: Any) {

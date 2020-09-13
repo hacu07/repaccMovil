@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_reporte_detalle.*
 import kotlinx.android.synthetic.main.reportedetalle_content.*
 import java.text.SimpleDateFormat
 

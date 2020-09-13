@@ -20,9 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnIngreso"
+
         android:layout_marginBottom="@dimen/dimen_16"
-        android:src="@drawable/espalda_casco"
         android:scaleType="centerCrop"/>
+
+    <!-- android:src="@drawable/espalda_casco" -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIngreso"

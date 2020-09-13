@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.menu.events.EstadoAgenteEvent
 import com.example.repacc.menu.events.NotificacionesEvent
+import com.example.repacc.pojo.Auxiliares.SocketUsuario
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Constantes
@@ -82,6 +83,42 @@ class DAO {
                     EstadoAgenteEvent(
                         msj = context.getString(R.string.ERROR_CONEXION)
                     )
+                )
+            }
+        })
+    }
+
+    /************************************
+     * Actualiza el socketId en BD
+     * HAROLDC 23/08/2020
+     */
+    fun updateSocketId(
+        socketUsuario: SocketUsuario,
+        basicCallback: BasicCallback
+    ){
+        val service = Util.getRetrofit().create<APIServiceAE>(
+            APIServiceAE::class.java)
+
+        service.updateSocketId(socketUsuario).enqueue(object: Callback<BasicEvent>{
+            override fun onResponse(call: Call<BasicEvent>, response: Response<BasicEvent>) {
+                val event = response?.body()
+
+                if (event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
+
+                    basicCallback.response(event)
+                }else{
+                    basicCallback.response(
+                        BasicEvent(
+                            typeEvent = Util.ERROR_RESPONSE
+                        )
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<BasicEvent>, t: Throwable) {
+                basicCallback.response(
+                    BasicEvent()
                 )
             }
         })

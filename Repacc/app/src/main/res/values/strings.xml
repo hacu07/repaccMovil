@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Repacc</string>
-    <string name="url_api">http://192.168.1.5:3004/api/</string>
+    <string name="url_api">http://192.168.1.6:3004/api/</string>
+    <string name="url_socket">http://192.168.1.6:3004</string>
     <string name="ingreso">Ingreso</string>
     <string name="registro">Registro</string>
     <string name="usuario">Usuario</string>
@@ -94,7 +95,7 @@
     <string name="seleccionar_clinica">Unidad medica</string>
     <string name="descripcion_de_lo_ocurrido">Descripción de lo ocurrido:</string>
     <string name="valide_reporte">Debe validar el reporte.</string>
-    <string name="cantidad_caracteres_codigo_reporte">El código a buscar debe ser de 6 dígitos.</string>
+    <string name="cantidad_caracteres_codigo_reporte">Ingrese código del reporte.</string>
     <string name="cargar_imagen_reporte">Seleccionar imagen</string>
     <string name="seleccion_carga_imagen">Seleccione de donde desea cargar la imagen:</string>
     <string name="camara">Camara</string>

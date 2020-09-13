@@ -21,6 +21,9 @@ class Util {
     //Elementos estaticos
     companion object {
 
+        val SOCKET_NOTIFICATION: String = "notification"
+        val NEW_SOCKET_CONNECTION: String = "newConnection"
+        lateinit var URL_SOCKET: String
         val IMAGE_HEIGHT: Int = 512
         val STORAGE_REFERENCE_REPORTS: String = "reportes"
         lateinit var URL_API: String

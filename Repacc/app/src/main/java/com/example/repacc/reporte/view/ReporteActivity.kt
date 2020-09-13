@@ -88,7 +88,7 @@ class ReporteActivity :
 
     // Imagen reporte
     private lateinit var mCurrentPhotoPath : String
-    private lateinit var mPhotoSelectedUri: Uri
+    private var mPhotoSelectedUri: Uri? = null
     private lateinit var bitmap: Bitmap
 
     private val MY_PHOTO = "my_photo" // Nombre de foto, nombre local y en nube

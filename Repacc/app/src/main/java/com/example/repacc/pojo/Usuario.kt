@@ -18,5 +18,6 @@ data class Usuario(
     var munNotif: Municipio? = null,
     var recibirNotif: Boolean = false,
     var munResid: Municipio? = null,
-    var estado: Estado? = null
+    var estado: Estado? = null,
+    var socketId: String? = null
     ): Serializable

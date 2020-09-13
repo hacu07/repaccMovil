@@ -46,7 +46,7 @@ class ReportePresenterClass: ReportePresenter {
     override fun registrarReporte(
         context: Context,
         reporte: Reporte,
-        mPhotoSelectedUri: Uri
+        mPhotoSelectedUri: Uri?
     ) {
         if (mView != null){
             mView?.mostrarProgreso(true)
