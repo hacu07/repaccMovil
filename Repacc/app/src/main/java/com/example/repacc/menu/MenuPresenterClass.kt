@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.menu.events.EstadoAgenteEvent
 import com.example.repacc.menu.events.NotificacionesEvent
+import com.example.repacc.menu.model.DAO.SocketEvent
 import com.example.repacc.menu.model.MenuModel
 import com.example.repacc.menu.model.MenuModelClass
 import com.example.repacc.menu.view.MenuActivity
@@ -15,7 +16,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.json.JSONObject
 import java.lang.Exception
-import java.lang.reflect.Executable
 
 class MenuPresenterClass: MenuPresenter {
 
@@ -24,6 +24,7 @@ class MenuPresenterClass: MenuPresenter {
 
     private var estadoAnt = false
     private lateinit var context: Context
+    private var lastSocketId: String? = null
 
     constructor(mView: MenuActivity){
         this.mView = mView
@@ -65,6 +66,7 @@ class MenuPresenterClass: MenuPresenter {
                     asignar = true,
                     socketId = Constantes.config?.usuario?.socketId
                 )
+                lastSocketId = Constantes.config?.usuario?.socketId
                 mView.let {
                     it?.mostrarMsj(socketUsuario.socketId!!)
                 }
@@ -118,6 +120,21 @@ class MenuPresenterClass: MenuPresenter {
 
             when(event.typeEvent){
                 Util.SUCCESS -> mView?.mostrarNotificaciones(event.content!!)
+                else -> mView?.mostrarMsj(event.msj!!)
+            }
+        }
+    }
+
+    @Subscribe
+    fun onSocketEventListener(event: SocketEvent){
+        if (mView != null){
+            mView?.habilitarElementos(true)
+
+            when(event.typeEvent){
+                // Se actualizo correctamente el id del socket actual
+                Util.SUCCESS -> {
+                    mView?.setEmitterListener(event.socketUsuario, lastSocketId)
+                }
                 else -> mView?.mostrarMsj(event.msj!!)
             }
         }

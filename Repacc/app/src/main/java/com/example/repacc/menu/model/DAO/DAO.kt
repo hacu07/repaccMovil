@@ -99,26 +99,26 @@ class DAO {
         val service = Util.getRetrofit().create<APIServiceAE>(
             APIServiceAE::class.java)
 
-        service.updateSocketId(socketUsuario).enqueue(object: Callback<BasicEvent>{
-            override fun onResponse(call: Call<BasicEvent>, response: Response<BasicEvent>) {
+        service.updateSocketId(socketUsuario).enqueue(object: Callback<SocketEvent>{
+            override fun onResponse(call: Call<SocketEvent>, response: Response<SocketEvent>) {
                 val event = response?.body()
 
                 if (event != null){
                     event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
-
+                    event.socketUsuario = socketUsuario
                     basicCallback.response(event)
                 }else{
                     basicCallback.response(
-                        BasicEvent(
+                        SocketEvent(
                             typeEvent = Util.ERROR_RESPONSE
                         )
                     )
                 }
             }
 
-            override fun onFailure(call: Call<BasicEvent>, t: Throwable) {
+            override fun onFailure(call: Call<SocketEvent>, t: Throwable) {
                 basicCallback.response(
-                    BasicEvent()
+                    SocketEvent()
                 )
             }
         })

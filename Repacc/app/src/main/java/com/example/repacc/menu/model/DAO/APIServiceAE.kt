@@ -19,5 +19,5 @@ interface APIServiceAE {
     fun cambiarEstado(@Body agente: Agente): Call<EstadoAgenteEvent>
 
     @PUT("usuario/updateSocketId")
-    fun updateSocketId(@Body socketUsuario: SocketUsuario): Call<BasicEvent>
+    fun updateSocketId(@Body socketUsuario: SocketUsuario): Call<SocketEvent>
 }

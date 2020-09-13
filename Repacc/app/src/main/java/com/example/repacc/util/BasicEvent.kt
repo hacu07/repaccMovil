@@ -1,7 +1,9 @@
 package com.example.repacc.util
 
-data class BasicEvent(
-    var typeEvent: Int = Util.ERROR_CONEXION,
-    val error: Boolean = true,
-    val msj: String? = null
-)
+import java.io.Serializable
+
+open class BasicEvent(
+    open var typeEvent: Int = Util.ERROR_CONEXION,
+    open val error: Boolean = true,
+    open val msj: String? = null
+): Serializable

@@ -19,7 +19,7 @@ object SocketRepacc {
         mSocket?.on(Util.NEW_SOCKET_CONNECTION, listener)
     }
 
-    fun notificationListeners(listener: Emitter.Listener){
-        mSocket?.on(Util.SOCKET_NOTIFICATION, listener)
+    fun notificationListeners(listener: Emitter.Listener, socketId: String){
+        mSocket?.on(socketId, listener)
     }
 }

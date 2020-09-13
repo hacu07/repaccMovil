@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.repacc.menu.events.EstadoAgenteEvent
 import com.example.repacc.menu.events.NotificacionesEvent
 import com.example.repacc.menu.model.DAO.DAO
+import com.example.repacc.menu.model.DAO.SocketEvent
 import com.example.repacc.pojo.Auxiliares.SocketUsuario
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
@@ -54,8 +55,13 @@ class MenuModelClass : MenuModel {
     override fun initSocket(socketUsuario: SocketUsuario) {
         mDAO.updateSocketId(socketUsuario, object : BasicCallback{
             override fun response(event: Any) {
-                val basicEvent = event as BasicEvent
+                val socketEvent = event as SocketEvent
+                postUpdateSocketId(socketEvent)
             }
         })
+    }
+
+    private fun postUpdateSocketId(socketEvent: SocketEvent) {
+        EventBus.getDefault().post(socketEvent)
     }
 }

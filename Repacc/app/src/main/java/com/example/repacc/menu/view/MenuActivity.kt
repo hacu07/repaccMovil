@@ -23,6 +23,7 @@ import com.example.repacc.menu.MenuPresenter
 import com.example.repacc.menu.MenuPresenterClass
 import com.example.repacc.notificaciones.view.NotificacionesActivity
 import com.example.repacc.perfil.view.PerfilActivity
+import com.example.repacc.pojo.Auxiliares.SocketUsuario
 import com.example.repacc.pojo.Notificacion
 import com.example.repacc.reporte.view.ReporteActivity
 import com.example.repacc.reportes.view.ReportesActivity
@@ -364,6 +365,25 @@ class MenuActivity :
         swDisponible.isChecked = estado
     }
 
+    override fun setEmitterListener(
+        socketUsuario: SocketUsuario?,
+        lastSocketId: String?
+    ) {
+        lastSocketId.let { pLastSocketId ->
+            mSocketNotificationListener.let {listener ->
+                SocketRepacc.mSocket?.off(Constantes.config!!.usuario!!.usuario, listener)
+            }
+        }
+
+        mSocketNotificationListener = Emitter.Listener {args ->
+            runOnUiThread{
+                val data = args[0] as JSONObject
+                mostrarMsj(data.optString("mensaje"))
+            }
+        }
+        SocketRepacc.notificationListeners(mSocketNotificationListener!!, Constantes.config!!.usuario!!.usuario!!)
+    }
+
     /****************************************************
      * LOCATION LISTENER
      */
@@ -412,17 +432,17 @@ class MenuActivity :
         SocketRepacc.connectListener(mSocketConnectListener!!)
 
         // Socket de notification
-        mSocketNotificationListener = Emitter.Listener {args ->
+        /*mSocketNotificationListener = Emitter.Listener {args ->
             runOnUiThread{
                 val data = args[0] as JSONObject
                 mostrarMsj(data.optString("mensaje"))
             }
         }
-        SocketRepacc.notificationListeners(mSocketNotificationListener!!)
+        SocketRepacc.notificationListeners(mSocketNotificationListener!!)*/
     }
 
     private fun offListeners() {
         mSocketConnectListener.let { SocketRepacc.mSocket?.off(Util.NEW_SOCKET_CONNECTION, it!!) }
-        mSocketNotificationListener.let { SocketRepacc.mSocket?.off(Util.SOCKET_NOTIFICATION, it!!)}
+        mSocketNotificationListener.let { SocketRepacc.mSocket?.off(Constantes.config!!.usuario!!.usuario!!, it!!)}
     }
 }
