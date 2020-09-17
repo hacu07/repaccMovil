@@ -10,8 +10,10 @@ import com.example.repacc.menu.model.MenuModelClass
 import com.example.repacc.menu.view.MenuActivity
 import com.example.repacc.menu.view.MenuView
 import com.example.repacc.pojo.Auxiliares.SocketUsuario
+import com.example.repacc.pojo.Notificacion
 import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
+import com.google.gson.Gson
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.json.JSONObject
@@ -110,6 +112,19 @@ class MenuPresenterClass: MenuPresenter {
         if(mView != null){
             mView?.habilitarElementos(false)
             mModel.obtenerNotificaciones(context)
+        }
+    }
+
+    /******************************++
+     * Get json send by API, JSON contains a notification object
+     * HAROLDC 15-September-2020
+     */
+    override fun getNotification(args: Array<Any>) {
+        try {
+            val notificacion = Gson().fromJson(args[0].toString(), Notificacion::class.java)
+            mView?.showNotification(notificacion)
+        }catch (e: Exception){
+            //ignore this
         }
     }
 

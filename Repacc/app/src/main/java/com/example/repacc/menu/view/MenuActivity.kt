@@ -2,6 +2,8 @@
 package com.example.repacc.menu.view
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -15,6 +17,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.repacc.R
 import com.example.repacc.contacto.view.ContactoActivity
@@ -35,7 +39,6 @@ import com.example.repacc.util.Util
 import com.example.repacc.vehiculo.view.VehiculoActivity
 import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.activity_menu.*
-import org.json.JSONObject
 
 
 class MenuActivity :
@@ -60,7 +63,7 @@ class MenuActivity :
         mostrarSwitchDisponible()
         mPresenter = MenuPresenterClass(this)
         mPresenter?.onCreate()
-
+        createNotificationChannel()
         SocketRepacc.init()
         SocketRepacc.mSocket.let {
             setListeners()
@@ -68,6 +71,24 @@ class MenuActivity :
         }
 
     }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_notification_general)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(name, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -377,11 +398,28 @@ class MenuActivity :
 
         mSocketNotificationListener = Emitter.Listener {args ->
             runOnUiThread{
-                val data = args[0] as JSONObject
-                mostrarMsj(data.optString("mensaje"))
+                mPresenter?.getNotification(args)
             }
         }
         SocketRepacc.notificationListeners(mSocketNotificationListener!!, Constantes.config!!.usuario!!.usuario!!)
+    }
+
+    override fun showNotification(notificacion: Notificacion?) {
+        var builder = NotificationCompat.Builder(this, getString(R.string.channel_notification_general))
+            .setSmallIcon(R.drawable.ic_notifications_none)
+            .setContentTitle(getString(R.string.app_name))
+            .setContentText(notificacion?.mensaje)
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText(notificacion?.mensaje))
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setAutoCancel(true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+        with(NotificationManagerCompat.from(this)) {
+            // notificationId is a unique int for each notification that you must define
+            notify(notificacion!!.createdAt.time.toInt(), builder.build())
+        }
+
     }
 
     /****************************************************
@@ -430,15 +468,6 @@ class MenuActivity :
             }
         }
         SocketRepacc.connectListener(mSocketConnectListener!!)
-
-        // Socket de notification
-        /*mSocketNotificationListener = Emitter.Listener {args ->
-            runOnUiThread{
-                val data = args[0] as JSONObject
-                mostrarMsj(data.optString("mensaje"))
-            }
-        }
-        SocketRepacc.notificationListeners(mSocketNotificationListener!!)*/
     }
 
     private fun offListeners() {

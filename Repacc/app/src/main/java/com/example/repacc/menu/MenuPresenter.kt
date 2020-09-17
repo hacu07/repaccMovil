@@ -9,4 +9,5 @@ interface MenuPresenter {
     fun cambiarEstado(context: Context, disponible: Boolean)
     fun obtenerNotificaciones(context: Context)
     fun initSocket(args: Array<out Any?>)
+    fun getNotification(jsonObject: Array<Any>)
 }

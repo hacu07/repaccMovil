@@ -12,4 +12,6 @@ interface MenuView {
         socketUsuario: SocketUsuario?,
         lastSocketId: String?
     )
+
+    fun showNotification(notificacion: Notificacion?)
 }
