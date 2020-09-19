@@ -124,7 +124,7 @@ class MenuPresenterClass: MenuPresenter {
             val notificacion = Gson().fromJson(args[0].toString(), Notificacion::class.java)
             mView?.showNotification(notificacion)
         }catch (e: Exception){
-            //ignore this
+            //mView?.mostrarMsj(e.toString())
         }
     }
 

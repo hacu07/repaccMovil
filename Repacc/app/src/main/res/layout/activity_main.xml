@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnIngreso"
-
+        android:src="@drawable/espalda_casco"
         android:layout_marginBottom="@dimen/dimen_16"
         android:scaleType="centerCrop"/>
 

@@ -78,7 +78,7 @@ class MenuActivity :
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.channel_notification_general)
             val descriptionText = getString(R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(name, name, importance).apply {
                 description = descriptionText
             }
@@ -93,8 +93,8 @@ class MenuActivity :
     override fun onDestroy() {
         super.onDestroy()
         SocketRepacc.mSocket.let {
-            it!!.disconnect()
             offListeners()
+            it!!.disconnect()
         }
 
         if (mPresenter != null){
@@ -471,7 +471,11 @@ class MenuActivity :
     }
 
     private fun offListeners() {
-        mSocketConnectListener.let { SocketRepacc.mSocket?.off(Util.NEW_SOCKET_CONNECTION, it!!) }
-        mSocketNotificationListener.let { SocketRepacc.mSocket?.off(Constantes.config!!.usuario!!.usuario!!, it!!)}
+        try{
+            mSocketConnectListener.let { SocketRepacc.mSocket?.off(Util.NEW_SOCKET_CONNECTION, it!!) }
+            mSocketNotificationListener.let { SocketRepacc.mSocket?.off(Constantes.config!!.usuario!!.usuario!!, it!!)}
+        }catch (e: Exception){
+            //ignore this
+        }
     }
 }
