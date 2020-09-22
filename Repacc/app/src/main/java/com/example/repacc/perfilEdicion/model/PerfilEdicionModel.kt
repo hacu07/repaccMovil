@@ -1,6 +1,7 @@
 package com.example.repacc.perfilEdicion.model
 
 import android.content.Context
+import android.net.Uri
 import com.example.repacc.pojo.Usuario
 
 interface PerfilEdicionModel {
@@ -10,5 +11,9 @@ interface PerfilEdicionModel {
 
     fun obtenerCiudades(context: Context, idDpto: String)
 
-    fun editarPerfil(context: Context, usuario: Usuario)
+    fun editarPerfil(
+        context: Context,
+        usuario: Usuario,
+        mPhotoSelectedUri: Uri?
+    )
 }

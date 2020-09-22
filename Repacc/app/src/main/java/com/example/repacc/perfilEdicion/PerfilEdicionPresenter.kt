@@ -1,6 +1,7 @@
 package com.example.repacc.perfilEdicion
 
 import android.content.Context
+import android.net.Uri
 
 interface PerfilEdicionPresenter {
     fun onCreate()
@@ -8,7 +9,7 @@ interface PerfilEdicionPresenter {
     fun cargarDatos()
     fun asignarRH(position: Int)
     fun asignarMunicipio(position: Int)
-    fun editarPerfil(context: Context)
+    fun editarPerfil(context: Context, mPhotoSelectedUri: Uri?)
 
     fun siCargoMunNotifUsuario(siCargo: Boolean)
 

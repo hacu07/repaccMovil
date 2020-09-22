@@ -14,6 +14,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imvFotoEdicion"
+        android:onClick="changeProfilePic"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:src="@drawable/user"
@@ -23,6 +24,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/rotarImgPer"
+        android:onClick="rotarImagenPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        app:layout_constraintStart_toEndOf="@id/imvFotoEdicion"
+        app:layout_constraintTop_toTopOf="@id/imvFotoEdicion"
+        app:layout_constraintBottom_toBottomOf="@id/imvFotoEdicion"
+        android:src="@android:drawable/ic_menu_rotate"
+        android:visibility="gone"
         />
 
     <ImageView

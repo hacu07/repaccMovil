@@ -25,7 +25,8 @@ class Util {
         val NEW_SOCKET_CONNECTION: String = "newConnection"
         lateinit var URL_SOCKET: String
         val IMAGE_HEIGHT: Int = 512
-        val STORAGE_REFERENCE_REPORTS: String = "reportes"
+        val STORAGE_REFERENCE_REPORTS: String = "reports"
+        val STORAGE_REFERENCE_USERS: String = "users"
         lateinit var URL_API: String
 
         val SUCCESS = 0

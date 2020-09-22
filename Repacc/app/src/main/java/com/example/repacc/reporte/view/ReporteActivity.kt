@@ -734,16 +734,6 @@ class ReporteActivity :
         }
     }
 
-    fun rotarImagenReporte(view: View) {
-        if (this.bitmap != null){
-            val bitmap: Bitmap? = Util.rotateBitmap(this.bitmap, Util.ROTATE_90 )
-            if (bitmap != null){
-                this.bitmap = bitmap
-                fotoReporte.setImageBitmap(bitmap)
-            }
-        }
-    }
-
     //Imagen de la camara
     private fun addPicGallery(): Uri? {
         // Indica que se escanee el archivo y lo añade a la BD multimedia del dispositivo -  si no, no aparece en galeria

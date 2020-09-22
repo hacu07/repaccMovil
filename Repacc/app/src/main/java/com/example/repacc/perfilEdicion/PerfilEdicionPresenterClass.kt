@@ -1,6 +1,7 @@
 package com.example.repacc.perfilEdicion
 
 import android.content.Context
+import android.net.Uri
 import com.example.repacc.R
 import com.example.repacc.perfilEdicion.event.DepartamentoEvent
 import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
@@ -50,10 +51,10 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
         }
     }
 
-    override fun editarPerfil(context: Context) {
+    override fun editarPerfil(context: Context, mPhotoSelectedUri: Uri?) {
         if (mView != null){
             if (usuarioModif?.tipoSangre != null)
-                usuarioModif?.let { mModel?.editarPerfil(context, it) }
+                usuarioModif?.let { mModel?.editarPerfil(context, it, mPhotoSelectedUri) }
             else
                 mView?.mostrarMsj(context.getString(R.string.no_rh))
         }
@@ -268,8 +269,15 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
             when(event.typeEvent){
                 Util.SUCCESS->{
                     Constantes.config?.usuario = event.content
-                    mView?.getContext()?.let { Util.guardarConfig(it) }
-                    event.msj?.let { mView?.mostrarMsj(it) }
+                    mView?.getContext()?.let {
+                        Util.guardarConfig(it)
+                    }
+                    event.msj?.let {
+                        mView?.mostrarMsj(it)
+                    }
+                    event.content!!.foto.let {
+                        mView?.cargarDatos(event.content!!)
+                    }
                 }
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->
                     event.msj?.let { mView?.mostrarMsj(it) }

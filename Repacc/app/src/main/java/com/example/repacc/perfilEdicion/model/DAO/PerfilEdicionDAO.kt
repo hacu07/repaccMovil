@@ -7,6 +7,9 @@ import com.example.repacc.perfilEdicion.event.EdicionPerfilEvent
 import com.example.repacc.perfilEdicion.event.MunicipioEvent
 import com.example.repacc.perfilEdicion.event.PaisEvent
 import com.example.repacc.pojo.Usuario
+import com.example.repacc.reporte.model.DAO.APIServiceRP
+import com.example.repacc.util.BasicCallback
+import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Util
 import retrofit2.Call
 import retrofit2.Callback
@@ -139,6 +142,36 @@ class PerfilEdicionDAO {
                     typeEvent =  Util.ERROR_CONEXION,
                     msj = context.getString(R.string.ERROR_CONEXION)
                 ))
+            }
+        })
+    }
+
+    fun actualizarRutaImagen(context: Context, usuario: Usuario, basicCallback: BasicCallback) {
+        val service = Util.getRetrofit().create(APIServicePE::class.java)
+
+        service.editarPerfil(usuario).enqueue(object : Callback<EdicionPerfilEvent>{
+            override fun onResponse(call: Call<EdicionPerfilEvent>, response: Response<EdicionPerfilEvent>) {
+                val response = response?.body()
+
+                if(response != null){
+                    response.typeEvent = if(!response.error) Util.SUCCESS else Util.ERROR_DATA
+                    basicCallback.response(response)
+                }else{
+                    basicCallback.response(
+                        EdicionPerfilEvent(
+                            typeEvent = Util.ERROR_RESPONSE,
+                            msj= context.getString(R.string.ERROR_RESPONSE)
+                        )
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<EdicionPerfilEvent>, t: Throwable) {
+                basicCallback.response(
+                    EdicionPerfilEvent(
+                        msj = context.getString(R.string.ERROR_CONEXION)
+                    )
+                )
             }
         })
     }
