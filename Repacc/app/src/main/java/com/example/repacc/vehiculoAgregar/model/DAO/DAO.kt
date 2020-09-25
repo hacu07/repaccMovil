@@ -10,6 +10,7 @@ import com.example.repacc.util.Util
 import com.example.repacc.vehiculoAgregar.events.MarcaEvent
 import com.example.repacc.vehiculoAgregar.events.ModeloEvent
 import com.example.repacc.vehiculoAgregar.events.TipoEvent
+import com.example.repacc.vehiculoAgregar.events.VehiculoEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -107,14 +108,43 @@ class DAO {
     }
 
     fun registroVehiculo(context: Context, vehiculo: Vehiculo, callback: BasicCallback){
-        service.registroVehiculo(vehiculo).enqueue(object: Callback<BasicEvent>{
+        service.registroVehiculo(vehiculo).enqueue(object: Callback<VehiculoEvent>{
+            override fun onResponse(call: Call<VehiculoEvent>, response: Response<VehiculoEvent>) {
+                val event = response?.body()
+
+                if (event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
+
+                    callback.response(event)
+                }else{
+                    callback.response(
+                        VehiculoEvent(
+                            typeEvent = Util.ERROR_RESPONSE,
+                            msj = context.getString(R.string.ERROR_RESPONSE)
+                        )
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<VehiculoEvent>, t: Throwable) {
+                callback.response(
+                    VehiculoEvent(
+                        msj = context.getString(R.string.ERROR_CONEXION)
+                    )
+                )
+            }
+        })
+    }
+
+    fun actualizarRutaImagen(context: Context, vehiculo: Vehiculo, callback: BasicCallback) {
+        service.actualizarVehiculo(vehiculo).enqueue(object: Callback<BasicEvent>{
             override fun onResponse(call: Call<BasicEvent>, response: Response<BasicEvent>) {
-                val basicEvent = response?.body()
+                val event = response?.body()
 
-                if (basicEvent != null){
-                    basicEvent.typeEvent = if(!basicEvent.error) Util.SUCCESS else Util.ERROR_DATA
+                if (event != null){
+                    event.typeEvent = if(!event.error) Util.SUCCESS else Util.ERROR_DATA
 
-                    callback.response(basicEvent)
+                    callback.response(event)
                 }else{
                     callback.response(
                         BasicEvent(

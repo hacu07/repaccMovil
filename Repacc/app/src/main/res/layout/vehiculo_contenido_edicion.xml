@@ -14,6 +14,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civFotoVehi"
+        android:onClick="changeVehiclePic"
         android:layout_width="128dp"
         android:layout_height="128dp"
         app:civ_border_overlay="true"
@@ -22,6 +23,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/rotarImgVeh"
+        android:onClick="rotarImagenVehiculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_8"
+        app:layout_constraintStart_toEndOf="@id/civFotoVehi"
+        app:layout_constraintTop_toTopOf="@id/civFotoVehi"
+        app:layout_constraintBottom_toBottomOf="@id/civFotoVehi"
+        android:src="@android:drawable/ic_menu_rotate"
+        android:visibility="gone"
         />
 
     <ImageView

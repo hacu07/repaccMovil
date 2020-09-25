@@ -14,7 +14,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imvFotoEdicion"
-        android:onClick="changeProfilePic"
+        android:onClick="changeVehiclePic"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:src="@drawable/user"

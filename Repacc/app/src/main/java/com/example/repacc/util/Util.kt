@@ -27,6 +27,7 @@ class Util {
         val IMAGE_HEIGHT: Int = 512
         val STORAGE_REFERENCE_REPORTS: String = "reports"
         val STORAGE_REFERENCE_USERS: String = "users"
+        val PATH_VEHICLES_USER: String = "vehicles"
         lateinit var URL_API: String
 
         val SUCCESS = 0

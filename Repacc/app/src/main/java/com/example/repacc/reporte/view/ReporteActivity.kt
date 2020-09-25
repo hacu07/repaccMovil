@@ -47,6 +47,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_perfil.*
 import kotlinx.android.synthetic.main.activity_reporte.*
 import kotlinx.android.synthetic.main.content_reporte.*
 import java.io.ByteArrayOutputStream
@@ -744,5 +745,15 @@ class ReporteActivity :
         this.sendBroadcast(mediaScanIntent)
         //mCurrentPhotoPath = null
         return contentUri
+    }
+
+    fun rotarImagenReporte(view: View) {
+        if (this.bitmap != null){
+            val bitmap: Bitmap? = Util.rotateBitmap(this.bitmap, Util.ROTATE_90 )
+            if (bitmap != null){
+                this.bitmap = bitmap
+                imvFoto.setImageBitmap(bitmap)
+            }
+        }
     }
 }

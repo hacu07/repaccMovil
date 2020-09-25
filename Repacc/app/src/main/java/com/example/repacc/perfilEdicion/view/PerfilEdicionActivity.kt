@@ -38,7 +38,7 @@ import java.util.*
 class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
 
     private var mPresenter: PerfilEdicionPresenter? = null
-    // Imagen reporte
+    // Imagen perfil
     private lateinit var mCurrentPhotoPath : String
     private var mPhotoSelectedUri: Uri? = null
     private lateinit var bitmap: Bitmap

@@ -75,9 +75,9 @@ class PerfilEdicionModelClass: PerfilEdicionModel, PaisCallback, DepartamentoCal
                             }
                         }
                     )
+                }else {
+                    postEditarPerfil(event)
                 }
-
-                postEditarPerfil(event)
             }
         })
     }

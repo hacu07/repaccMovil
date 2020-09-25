@@ -1,14 +1,15 @@
 package com.example.repacc.vehiculoAgregar
 
 import android.content.Context
+import android.net.Uri
 import com.example.repacc.R
 import com.example.repacc.pojo.*
-import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
 import com.example.repacc.vehiculoAgregar.events.MarcaEvent
 import com.example.repacc.vehiculoAgregar.events.ModeloEvent
 import com.example.repacc.vehiculoAgregar.events.TipoEvent
+import com.example.repacc.vehiculoAgregar.events.VehiculoEvent
 import com.example.repacc.vehiculoAgregar.model.VehiculoAgregarModel
 import com.example.repacc.vehiculoAgregar.model.VehiculosAgregarModelClass
 import com.example.repacc.vehiculoAgregar.view.VehiculoAgregarActivity
@@ -80,7 +81,8 @@ class VehiculoAgregarPresenterClass: VehiculoAgregarPresenter {
         context: Context,
         placa: String,
         esParticular: Boolean,
-        colores: Array<String>
+        colores: Array<String>,
+        mPhotoSelectedUri: Uri?
     ) {
         if (mView != null){
 
@@ -96,7 +98,7 @@ class VehiculoAgregarPresenterClass: VehiculoAgregarPresenter {
                     placa = placa
                 )
                 this.vehiculo = vehiculo
-                mModel.registroVehiculo(context,vehiculo)
+                mModel.registroVehiculo(context,vehiculo, mPhotoSelectedUri)
             }else{
                 mView?.mostrarMsj(context.getString(R.string.falta_datos))
             }
@@ -176,15 +178,15 @@ class VehiculoAgregarPresenterClass: VehiculoAgregarPresenter {
     }
 
     @Subscribe
-    fun onRegistroListener(basicEvent: BasicEvent){
+    fun onRegistroListener(event: VehiculoEvent){
         if (mView != null){
             mView?.mostrarProgreso(false)
             mView?.habilitarElementos(true)
-            mView?.mostrarMsj(basicEvent.msj!!)
+            mView?.mostrarMsj(event.msj!!)
 
-            when(basicEvent.typeEvent){
+            when(event.typeEvent){
                 Util.SUCCESS -> {
-                    mView?.agregarVehiculo(vehiculo!!)
+                    mView?.agregarVehiculo(event.content!!)
                     mView?.finalizar()
                 }
                 else ->{
