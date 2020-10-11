@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:id="@+id/lblTitle"
         android:layout_width="wrap_content"
         android:text="@string/app_name"
         android:textColor="@android:color/black"
@@ -14,4 +15,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <ProgressBar
+        android:id="@+id/pbMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/lblTitle"
+        app:layout_constraintTop_toTopOf="@id/lblTitle"
+        app:layout_constraintBottom_toBottomOf="@id/lblTitle"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_marginLeft="@dimen/dimen_4"
+        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

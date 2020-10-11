@@ -32,6 +32,7 @@ import com.example.repacc.vehiculo.view.VehiculoActivity
 import com.example.repacc.vehiculoAgregar.VehiculoAgregarPresenter
 import com.example.repacc.vehiculoAgregar.VehiculoAgregarPresenterClass
 import kotlinx.android.synthetic.main.activity_vehiculo_agregar.*
+import kotlinx.android.synthetic.main.perfil_contenido_edicion.*
 import kotlinx.android.synthetic.main.vehiculo_contenido_edicion.*
 import petrov.kristiyan.colorpicker.ColorPicker
 import java.io.ByteArrayOutputStream
@@ -318,7 +319,6 @@ class VehiculoAgregarActivity : AppCompatActivity(), VehiculoAgregarView {
         spiModVeh.isEnabled = siHabilita
         btnColorVeh.isEnabled = siHabilita
         swEsParticular.isEnabled = siHabilita
-        imvFotoVehi.isEnabled = siHabilita
     }
 
     override fun cargarSpiTipos(listaTipos: List<String>) {

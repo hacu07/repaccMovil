@@ -29,7 +29,8 @@
         android:theme="@style/AppTheme"
         android:hardwareAccelerated="true"
         android:usesCleartextTraffic="true">
-        <activity android:name=".notificaciones.view.NotificacionesActivity"></activity>
+        <activity android:name=".notificaciones.view.NotificacionesActivity"
+            android:parentActivityName=".main.MainActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -44,25 +45,38 @@
 
         <activity
             android:name=".trafico.view.TraficoActivity"
-            android:label="@string/title_activity_trafico" />
+            android:label="@string/title_activity_trafico"
+            android:parentActivityName=".main.MainActivity"/>
         <activity
             android:name=".reporteDetalle.view.ReporteDetalleActivity"
-            android:label="@string/title_activity_reporte_detalle" />
-        <activity android:name=".reportes.view.ReportesActivity" />
+            android:label="@string/title_activity_reporte_detalle"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".reportes.view.ReportesActivity"
+            android:parentActivityName=".main.MainActivity"/>
         <activity
             android:configChanges="screenSize|orientation"
             android:windowSoftInputMode="stateHidden"
             android:name=".reporte.view.ReporteActivity"
-            android:label="@string/title_activity_reporte" />
-        <activity android:name=".vehiculoAgregar.view.VehiculoAgregarActivity" />
-        <activity android:name=".vehiculo.view.VehiculoActivity" />
-        <activity android:name=".contactoAgregar.view.ContactoAgregarActivity" />
-        <activity android:name=".contacto.view.ContactoActivity" />
-        <activity android:name=".perfilEdicion.view.PerfilEdicionActivity" />
-        <activity android:name=".perfil.view.PerfilActivity" />
-        <activity android:name=".menu.view.MenuActivity" />
-        <activity android:name=".login.view.LoginActivity" />
-        <activity android:name=".registro.view.RegistroActivity" />
+            android:label="@string/title_activity_reporte"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".vehiculoAgregar.view.VehiculoAgregarActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".vehiculo.view.VehiculoActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".contactoAgregar.view.ContactoAgregarActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".contacto.view.ContactoActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".perfilEdicion.view.PerfilEdicionActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".perfil.view.PerfilActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".menu.view.MenuActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".login.view.LoginActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".registro.view.RegistroActivity"
+            android:parentActivityName=".main.MainActivity"/>
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

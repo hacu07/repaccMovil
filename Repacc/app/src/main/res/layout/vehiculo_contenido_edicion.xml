@@ -17,8 +17,7 @@
         android:onClick="changeVehiclePic"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        app:civ_border_overlay="true"
-        app:civ_border_color="@android:color/black"
+        android:src="@android:drawable/ic_menu_camera"
         app:civ_circle_background_color="@android:color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,16 +36,6 @@
         android:src="@android:drawable/ic_menu_rotate"
         android:visibility="gone"
         />
-
-    <ImageView
-        android:id="@+id/imvFotoVehi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_camera"
-        app:layout_constraintStart_toStartOf="@id/civFotoVehi"
-        app:layout_constraintTop_toTopOf="@id/civFotoVehi"
-        app:layout_constraintEnd_toEndOf="@id/civFotoVehi"
-        app:layout_constraintBottom_toBottomOf="@id/civFotoVehi"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPlacaVeh"

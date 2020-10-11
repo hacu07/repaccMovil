@@ -2,7 +2,7 @@ package com.example.repacc.reporteDetalle.model.DAO
 
 import com.example.repacc.pojo.Auxiliares.EstadoAgenRepo
 import com.example.repacc.pojo.Reporte
-import com.example.repacc.reporteDetalle.EstadoEvent
+import com.example.repacc.reporteDetalle.events.EstadoEvent
 import com.example.repacc.util.BasicEvent
 import retrofit2.Call
 import retrofit2.http.Body

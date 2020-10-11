@@ -1,4 +1,4 @@
-package com.example.repacc.reporteDetalle
+package com.example.repacc.reporteDetalle.events
 
 import com.example.repacc.pojo.Estado
 import com.example.repacc.util.Util

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Repacc</string>
-    <string name="url_api">http://192.168.1.6:3004/api/</string>
-    <string name="url_socket">http://192.168.1.6:3004</string>
+    <string name="url_api">http://192.168.1.5:3004/api/</string>
+    <string name="url_socket">http://192.168.1.5:3004</string>
     <string name="ingreso">Ingreso</string>
     <string name="registro">Registro</string>
     <string name="usuario">Usuario</string>

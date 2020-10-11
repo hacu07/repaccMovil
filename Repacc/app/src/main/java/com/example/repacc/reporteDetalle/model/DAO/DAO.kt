@@ -4,7 +4,7 @@ import android.content.Context
 import com.example.repacc.R
 import com.example.repacc.pojo.Auxiliares.EstadoAgenRepo
 import com.example.repacc.pojo.Reporte
-import com.example.repacc.reporteDetalle.EstadoEvent
+import com.example.repacc.reporteDetalle.events.EstadoEvent
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
 import com.example.repacc.util.Util

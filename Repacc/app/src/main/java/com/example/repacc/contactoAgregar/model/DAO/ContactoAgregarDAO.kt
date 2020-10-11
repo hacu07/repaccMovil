@@ -6,6 +6,7 @@ import com.example.repacc.contactoAgregar.events.ContactosEvent
 import com.example.repacc.pojo.Auxiliares.SolicitudRegistrar
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent
+import com.example.repacc.util.Constantes
 import com.example.repacc.util.Util
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,7 +17,7 @@ class ContactoAgregarDAO {
     fun buscarUsuario(context: Context, username: String, callback: BasicCallback){
         val service = Util.getRetrofit().create<APIServiceCA>(APIServiceCA::class.java)
 
-        service.buscarContacto(username).enqueue(object: Callback<ContactosEvent>{
+        service.buscarContacto(Constantes.config!!.usuario!!._id!! ,username).enqueue(object: Callback<ContactosEvent>{
             override fun onResponse(
                 call: Call<ContactosEvent>,
                 response: Response<ContactosEvent>

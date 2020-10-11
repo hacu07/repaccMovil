@@ -5,7 +5,7 @@
     android:layout_height="@dimen/dimen_256"
     app:cardCornerRadius="@dimen/dimen_8"
     android:layout_margin="@dimen/dimen_8"
-    android:padding="@dimen/dimen_4">
+    app:cardElevation="@dimen/dimen_16">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +16,9 @@
             android:id="@+id/itmVeh_foto"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:scaleType="center"
+            android:background="@android:color/black"
             android:src="@android:drawable/ic_menu_camera"
-            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +31,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/black_gradient">
+            android:background="@drawable/black_gradient"
+            android:padding="@dimen/dimen_8">
 
             <TextView
                 android:id="@+id/itmVeh_placa"
@@ -40,7 +42,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_18"
                 android:textStyle="bold"
-                android:layout_margin="@dimen/dimen_2"
                 app:layout_constraintBottom_toTopOf="@id/itmVeh_marca"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_18"
                 android:textStyle="bold"
-                android:layout_margin="@dimen/dimen_2"
                 app:layout_constraintBottom_toTopOf="@id/itmVeh_modelo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_18"
                 android:textStyle="bold"
-                android:layout_margin="@dimen/dimen_2"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 />

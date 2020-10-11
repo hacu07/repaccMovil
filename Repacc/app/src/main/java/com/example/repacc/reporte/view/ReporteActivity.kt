@@ -752,7 +752,7 @@ class ReporteActivity :
             val bitmap: Bitmap? = Util.rotateBitmap(this.bitmap, Util.ROTATE_90 )
             if (bitmap != null){
                 this.bitmap = bitmap
-                imvFoto.setImageBitmap(bitmap)
+                fotoReporte.setImageBitmap(bitmap)
             }
         }
     }

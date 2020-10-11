@@ -7,6 +7,7 @@ import com.example.repacc.pojo.Entidad
 import com.example.repacc.pojo.Estado
 import com.example.repacc.pojo.Reporte
 import com.example.repacc.pojo.Servicio
+import com.example.repacc.reporteDetalle.events.EstadoEvent
 import com.example.repacc.reporteDetalle.model.ReporteDetalleModel
 import com.example.repacc.reporteDetalle.model.ReporteDetalleModelClass
 import com.example.repacc.reporteDetalle.view.ReporteDetalleActivity

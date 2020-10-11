@@ -4,11 +4,13 @@ package com.example.repacc.menu.view
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -19,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.TaskStackBuilder
 import androidx.core.content.ContextCompat
 import com.example.repacc.R
 import com.example.repacc.contacto.view.ContactoActivity
@@ -29,7 +32,9 @@ import com.example.repacc.notificaciones.view.NotificacionesActivity
 import com.example.repacc.perfil.view.PerfilActivity
 import com.example.repacc.pojo.Auxiliares.SocketUsuario
 import com.example.repacc.pojo.Notificacion
+import com.example.repacc.pojo.Reporte
 import com.example.repacc.reporte.view.ReporteActivity
+import com.example.repacc.reporteDetalle.view.ReporteDetalleActivity
 import com.example.repacc.reportes.view.ReportesActivity
 import com.example.repacc.trafico.view.TraficoActivity
 import com.example.repacc.util.AlertCallback
@@ -39,6 +44,7 @@ import com.example.repacc.util.Util
 import com.example.repacc.vehiculo.view.VehiculoActivity
 import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 class MenuActivity :
@@ -110,6 +116,8 @@ class MenuActivity :
         }
         if (primerOnResume){
             primerOnResume = false
+        }else{
+            habilitarElementos(true)
         }
 
         super.onResume()
@@ -323,21 +331,25 @@ class MenuActivity :
     }
 
     private fun irPerfil() {
+        habilitarElementos(false)
         val intent = Intent(this, PerfilActivity::class.java)
         startActivity(intent)
     }
 
     fun irContactos(view: View) {
+        habilitarElementos(false)
         val intent = Intent(this, ContactoActivity::class.java)
         startActivity(intent)
     }
 
     fun irVehiculos(view: View) {
+        habilitarElementos(false)
         val intent = Intent(this, VehiculoActivity::class.java)
         startActivity(intent)
     }
 
     fun irReporte(view:View){
+        habilitarElementos(false)
         val intent = Intent(this, ReporteActivity::class.java)
         startActivity(intent)
     }
@@ -348,6 +360,7 @@ class MenuActivity :
     }
 
     fun irTrafico(view: View) {
+        habilitarElementos(false)
         val intent = Intent(this, TraficoActivity::class.java)
         startActivity(intent)
     }
@@ -380,6 +393,7 @@ class MenuActivity :
         cvVehiculo.isEnabled = habilita
         cvContacto.isEnabled = habilita
         barMenu.isEnabled = habilita
+        pbMenu.visibility = if (habilita) View.GONE else View.VISIBLE
     }
 
     override fun asignarEstado(estado: Boolean) {
@@ -405,6 +419,17 @@ class MenuActivity :
     }
 
     override fun showNotification(notificacion: Notificacion?) {
+        // Create an Intent for the activity you want to start
+        val resultIntent = Intent(this, ReporteDetalleActivity::class.java)
+        resultIntent.putExtra(Reporte::class.java.name,notificacion!!.reporte)
+        // Create the TaskStackBuilder
+        val resultPendingIntent: PendingIntent? = TaskStackBuilder.create(this).run {
+            // Add the intent, which inflates the back stack
+            addNextIntentWithParentStack(resultIntent)
+            // Get the PendingIntent containing the entire back stack
+            getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
         var builder = NotificationCompat.Builder(this, getString(R.string.channel_notification_general))
             .setSmallIcon(R.drawable.ic_notifications_none)
             .setContentTitle(getString(R.string.app_name))
@@ -414,6 +439,10 @@ class MenuActivity :
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+
+        builder.apply {
+            setContentIntent(resultPendingIntent)
+        }
 
         with(NotificationManagerCompat.from(this)) {
             // notificationId is a unique int for each notification that you must define

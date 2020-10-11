@@ -35,6 +35,7 @@
         app:fabSize="normal"
         app:tint="@android:color/white"
         android:backgroundTint="@android:color/black"
+        app:backgroundTint="@android:color/black"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

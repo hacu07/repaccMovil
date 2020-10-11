@@ -3,7 +3,7 @@ package com.example.repacc.reporteDetalle.model
 import android.content.Context
 import com.example.repacc.pojo.Auxiliares.EstadoAgenRepo
 import com.example.repacc.pojo.Reporte
-import com.example.repacc.reporteDetalle.EstadoEvent
+import com.example.repacc.reporteDetalle.events.EstadoEvent
 import com.example.repacc.reporteDetalle.model.DAO.DAO
 import com.example.repacc.util.BasicCallback
 import com.example.repacc.util.BasicEvent

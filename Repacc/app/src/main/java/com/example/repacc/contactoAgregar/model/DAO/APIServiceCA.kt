@@ -10,8 +10,11 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface APIServiceCA {
-    @GET("contacto/buscarContacto/{username}")
-    fun buscarContacto(@Path("username") username: String): Call<ContactosEvent>
+    @GET("contacto/buscarContacto/{userId}/{username}")
+    fun buscarContacto(
+        @Path("userId") userId: String,
+        @Path("username") username: String
+    ): Call<ContactosEvent>
 
     @POST("solicitud/registrar")
     fun registrarSolicitud(@Body solicitud: SolicitudRegistrar): Call<BasicEvent>
