@@ -46,14 +46,17 @@ class SolicitudAdapter(
                 solicitud ->  solicitud.usuario._id.equals(contacto?.contacto?._id)
         }
 
-        if (solicitud != null){
+        eliminarSolicitud(solicitud)
+    }
+
+    fun eliminarSolicitud(solicitud: Solicitud?) {
+        solicitud.let { solicitud ->
             val index = solicitudes?.indexOf(solicitud)
             index?.let {
                 solicitudes?.removeAt(it)
                 notifyItemRemoved(it)
             }
         }
-
     }
 
 

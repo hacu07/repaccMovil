@@ -8,6 +8,7 @@ import com.example.repacc.contacto.model.SolicitudModel
 import com.example.repacc.contacto.model.SolicitudModelClass
 import com.example.repacc.contacto.view.ContactoActivity
 import com.example.repacc.contacto.view.ContactoView
+import com.example.repacc.pojo.Solicitud
 import com.example.repacc.util.Util
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -16,6 +17,9 @@ class ContactoPresenterClass : ContactoPresenter{
 
     private var mView: ContactoView?
     private lateinit var mModel: SolicitudModel
+
+    private var mAceptado = false // Si acepto o rechazo la solicitud
+    private lateinit var mSolicitud: Solicitud
 
     constructor(mView: ContactoActivity){
         this.mView = mView
@@ -37,7 +41,7 @@ class ContactoPresenterClass : ContactoPresenter{
 
     override fun cargarSolicitudes(context: Context) {
         if (mView != null){
-            mView?.mostrarProgreso(true)
+            mView?.mostrarProgresoSolicitudes(true)
             mView?.habilitarElementos(false)
             mModel.cargarSolicitud(context)
         }
@@ -45,24 +49,26 @@ class ContactoPresenterClass : ContactoPresenter{
 
     override fun cargarContactos(context: Context) {
         if (mView != null){
-            mView?.mostrarProgreso(true)
             mView?.habilitarElementos(false)
+            mView?.mostrarProgresoContactos(true)
             mModel.cargarContactos(context)
         }
     }
 
-    override fun cambiarEstadoSolicitud(context: Context, idSolicitud: String, aceptado: Boolean) {
+    override fun cambiarEstadoSolicitud(context: Context, solicitud: Solicitud, aceptado: Boolean) {
         if (mView != null){
+            mAceptado = aceptado
+            mSolicitud = solicitud
             mView?.mostrarProgreso(true)
             mView?.habilitarElementos(false)
-            mModel.cambiarEstadoSolicitud(context, idSolicitud, aceptado)
+            mModel.cambiarEstadoSolicitud(context, solicitud._id, aceptado)
         }
     }
 
     @Subscribe
     public fun onEventListener(event: SolicitudEvent){
         if (event != null){
-            mView?.mostrarProgreso(false)
+            mView?.mostrarProgresoSolicitudes(false)
             mView?.habilitarElementos(true)
 
             when(event.typeEvent){
@@ -71,7 +77,7 @@ class ContactoPresenterClass : ContactoPresenter{
                 }
 
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->
-                    event.msj?.let { msj -> mView?.mostrarMsj(msj) }
+                    event.msj?.let { msj -> mView?.mostrarMsjSolicitudes(msj) }
             }
         }
     }
@@ -79,16 +85,19 @@ class ContactoPresenterClass : ContactoPresenter{
     @Subscribe
     public fun listenerContacts(event: ContactoEvent){
         if (event != null){
-            mView?.mostrarProgreso(false)
+            mView?.mostrarProgresoContactos(false)
             mView?.habilitarElementos(true)
 
             when(event.typeEvent){
                 Util.SUCCESS -> {
-                    mView?.cargarContactos(event.content)
+                    if (event.content != null )
+                        mView?.cargarContactos(event.content)
+                    else
+                        mView?.mostrarMsjContactos(event.msj!!)
                 }
 
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->
-                    event.msj?.let { msj -> mView?.mostrarMsj(msj) }
+                    event.msj?.let { msj -> mView?.mostrarMsjContactos(msj) }
             }
         }
     }
@@ -101,7 +110,10 @@ class ContactoPresenterClass : ContactoPresenter{
 
             when(event.typeEvent){
                 Util.SUCCESS -> {
-                    mView?.agregarContacto(event.content)
+                    if (mAceptado)
+                        mView?.agregarContacto(event.content)
+                    else
+                        mView?.eliminarSolicitudRechazada(mSolicitud)
                 }
 
                 Util.ERROR_DATA,Util.ERROR_RESPONSE,Util.ERROR_CONEXION->

@@ -15,7 +15,9 @@ import com.example.repacc.contactoAgregar.view.ContactoAgregarActivity
 import com.example.repacc.pojo.Contacto
 import com.example.repacc.pojo.Solicitud
 import com.example.repacc.pojo.Usuario
+import com.example.repacc.util.Util
 import kotlinx.android.synthetic.main.activity_contacto.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class ContactoActivity : AppCompatActivity(), ContactoView, OnItemSolicitudListener {
 
@@ -51,33 +53,61 @@ class ContactoActivity : AppCompatActivity(), ContactoView, OnItemSolicitudListe
         Conctacto View
      */
     override fun habilitarElementos(siHabilita: Boolean) {
-
+        rvSolicitud.isEnabled   = siHabilita
+        rvContacto.isEnabled    = siHabilita
+        fabContacto.isEnabled   = siHabilita
     }
 
     override fun mostrarProgreso(siMuestra: Boolean) {
+        pbMenu.visibility = if(siMuestra) View.VISIBLE else View.GONE
+    }
 
+    override fun mostrarProgresoSolicitudes(siMuestra: Boolean) {
+        pbSolicitudes.visibility = if(siMuestra) View.VISIBLE else View.GONE
+    }
+
+    override fun mostrarProgresoContactos(siMuestra: Boolean) {
+        pbContactos.visibility = if(siMuestra) View.VISIBLE else View.GONE
     }
 
     override fun mostrarMsj(msj: String) {
+        Util.mostrarToast(this,msj)
+    }
 
+    override fun mostrarMsjSolicitudes(msj: String) {
+        rvSolicitud.visibility = View.GONE
+
+        tvErrorSolicitud.visibility = View.VISIBLE
+        tvErrorSolicitud.setText(msj)
+    }
+
+    override fun mostrarMsjContactos(msj: String) {
+        rvContacto.visibility = View.GONE
+
+        tvErrorContactos.visibility = View.VISIBLE
+        tvErrorContactos.setText(msj)
     }
 
     override fun cargarSolicitudes(solicitudes: ArrayList<Solicitud>?) {
+        tvErrorSolicitud.visibility = View.GONE
+
+        rvSolicitud.visibility = View.VISIBLE
         mAdapterSolicitud = SolicitudAdapter(solicitudes,this, this)
         rvSolicitud.adapter = mAdapterSolicitud
-
     }
 
     override fun cargarContactos(contactos: ArrayList<Contacto>?) {
+        tvErrorContactos.visibility = View.GONE
+
+        rvContacto.visibility = View.VISIBLE
         val contacts = if(contactos != null) contactos else ArrayList<Contacto>()
         mAdapterContacto = ContactoAdapter(contacts,this)
         rvContacto.adapter = mAdapterContacto
-
     }
 
     // Si acepto o rechazo la solicitud
     override fun listenerEstadoSolicitud(solicitud: Solicitud, aceptado: Boolean) {
-        mPresenter.cambiarEstadoSolicitud(this, solicitud._id, aceptado)
+        mPresenter.cambiarEstadoSolicitud(this, solicitud, aceptado)
     }
 
 
@@ -88,6 +118,15 @@ class ContactoActivity : AppCompatActivity(), ContactoView, OnItemSolicitudListe
     override fun agregarContacto(contacto: Contacto?) {
         mAdapterSolicitud.eliminarSolicitud(contacto)
         mAdapterContacto.agregarContacto(contacto)
+
+        if(mAdapterSolicitud.solicitudes?.size == 0){
+            rvSolicitud.visibility = View.GONE
+            tvErrorSolicitud.visibility = View.VISIBLE
+        }
+    }
+
+    override fun eliminarSolicitudRechazada(solicitud: Solicitud) {
+        mAdapterSolicitud.eliminarSolicitud(solicitud)
     }
 
     /* Inicia actividad para buscar contacto */

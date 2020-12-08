@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dimen_4">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/itmCon_cv"
@@ -13,7 +14,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:elevation="2dp">
+        android:layout_margin="@dimen/dimen_2"
+        android:elevation="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,9 +64,6 @@
                 android:textSize="@dimen/text_16"
                 app:layout_constraintStart_toEndOf="@+id/itmCon_foto"
                 app:layout_constraintTop_toBottomOf="@id/glInt"/>
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

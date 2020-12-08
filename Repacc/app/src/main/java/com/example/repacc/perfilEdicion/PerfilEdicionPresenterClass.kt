@@ -43,18 +43,31 @@ class PerfilEdicionPresenterClass : PerfilEdicionPresenter {
     override fun cargarDatos() {
         if(mView != null){
             Constantes.config?.usuario?.let {
+                mView?.mostrarProgreso(true)
+                mView?.habilitarCampos(false)
                 mView?.configSpiRH(listaRh)
                 mView?.cargarDatos(it)
-
                 mView?.cargarTipoSangre(listaRh.indexOf(it.tipoSangre))
             }
+        }
+    }
+
+    override fun asignarDatosUsuarioModif(nombre: String, correo: String, celular: String) {
+        usuarioModif.apply {
+            this?.nombre = nombre
+            this?.correo = correo
+            this?.celular = celular
         }
     }
 
     override fun editarPerfil(context: Context, mPhotoSelectedUri: Uri?) {
         if (mView != null){
             if (usuarioModif?.tipoSangre != null)
-                usuarioModif?.let { mModel?.editarPerfil(context, it, mPhotoSelectedUri) }
+                usuarioModif?.let {
+                    mView?.mostrarProgreso(true)
+                    mView?.habilitarCampos(false)
+                    mModel?.editarPerfil(context, it, mPhotoSelectedUri)
+                }
             else
                 mView?.mostrarMsj(context.getString(R.string.no_rh))
         }

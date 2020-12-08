@@ -105,4 +105,7 @@
     <string name="report_error_imageUpdated">No se logró cargar la imagen.</string>
     <string name="channel_description">Canal de notificaciones generales</string>
     <string name="channel_notification_general">general_notification</string>
+    <string name="error_message_request_contacts">No se encontrarón solicitudes.</string>
+    <string name="error_message_contacts">No se encontraron contactos de emergencia.</string>
+    <string name="error_data_empty">Datos no validos</string>
 </resources>

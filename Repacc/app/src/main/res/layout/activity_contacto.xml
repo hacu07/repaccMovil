@@ -36,7 +36,32 @@
         app:layout_constraintTop_toBottomOf="@id/barMenu"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- Mensaje en caso de algun error al cargar la solicitudes-->
+    <TextView
+        android:id="@+id/tvErrorSolicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_16"
+        android:text="@string/error_message_request_contacts"
+        android:visibility="gone"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/title_contactos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_solicitud" />
 
+    <ProgressBar
+        android:id="@+id/pbSolicitudes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/title_contactos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_solicitud"/>
+
+    <!-- Carga la solicitudes-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSolicitud"
         android:layout_width="0dp"
@@ -45,8 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_solicitud"
+        android:visibility="gone"
         />
-
 
     <!-- Contacto -->
     <TextView
@@ -62,16 +87,41 @@
         app:layout_constraintTop_toBottomOf="@id/rvSolicitud"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <!-- Texto si se genera algun error al cargar los contactos -->
+    <TextView
+        android:id="@+id/tvErrorContactos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_message_contacts"
+        android:layout_margin="@dimen/dimen_8"
+        android:visibility="gone"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_contactos" />
+
+    <ProgressBar
+        android:id="@+id/pbContactos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_contactos"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContacto"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/dimen_8"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_contactos"
         tools:listitem="@layout/item_contacto"
-        />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/title_contactos" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabContacto"
@@ -85,5 +135,6 @@
         app:fabSize="normal"
         app:tint="@android:color/white"
         android:backgroundTint="@android:color/black"
+        app:backgroundTint="@android:color/black"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

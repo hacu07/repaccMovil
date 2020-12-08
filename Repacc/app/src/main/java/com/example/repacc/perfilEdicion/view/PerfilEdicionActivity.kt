@@ -29,6 +29,7 @@ import com.example.repacc.util.AlertCallback
 import com.example.repacc.util.Util
 import kotlinx.android.synthetic.main.activity_perfil_edicion.*
 import kotlinx.android.synthetic.main.perfil_contenido_edicion.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -263,7 +264,34 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
     }
 
     private fun guardarPerfil() {
-        mPresenter?.editarPerfil(this, mPhotoSelectedUri)
+        if (validarDatos()){
+            mPresenter?.asignarDatosUsuarioModif(
+                etNombreEdicion.text.toString(),
+                etCorreoEdicion.text.toString(),
+                etCelularEdicion.text.toString()
+            )
+            mPresenter?.editarPerfil(this, mPhotoSelectedUri)
+        }
+
+    }
+
+    private fun validarDatos(): Boolean {
+        var isValid: Boolean = true
+
+        if (etNombreEdicion.text.toString().isNullOrEmpty()){
+            isValid = false
+            etNombreEdicion.error = getString(R.string.error_data_empty)
+            etNombreEdicion.requestFocus()
+        }else if (etCorreoEdicion.text.toString().isNullOrEmpty()){
+            isValid = false
+            etCorreoEdicion.error = getString(R.string.error_data_empty)
+            etCorreoEdicion.requestFocus()
+        }else if (etCelularEdicion.text.toString().isNullOrEmpty()){
+            isValid = false
+            etCelularEdicion.error = getString(R.string.error_data_empty)
+            etCelularEdicion.requestFocus()
+        }
+        return isValid
     }
 
     override fun onBackPressed() {
@@ -275,11 +303,22 @@ class PerfilEdicionActivity : AppCompatActivity(), PerfilEdicionView {
      * PerfilEdicionView
      */
     override fun habilitarCampos(habilitar: Boolean) {
+        imvFotoEdicion.isEnabled = habilitar
+        rotarImgPer.isEnabled = habilitar
+        tilNombreEdicion.isEnabled = habilitar
+        tilUsuarioEdicion.isEnabled = habilitar
+        tilCorreoEdicion.isEnabled = habilitar
+        tilCelularEdicion.isEnabled = habilitar
+        spiRHEdicion.isEnabled = habilitar
+        swRecibNotif.isEnabled = habilitar
+        spiPaisNotif.isEnabled = habilitar
+        spiDepNotif.isEnabled = habilitar
+        spiMunNotif.isEnabled = habilitar
 
     }
 
     override fun mostrarProgreso(mostrar: Boolean) {
-
+        pbMenu.visibility = if (mostrar) View.VISIBLE else View.GONE
     }
 
     override fun mostrarMsj(msj: String) {

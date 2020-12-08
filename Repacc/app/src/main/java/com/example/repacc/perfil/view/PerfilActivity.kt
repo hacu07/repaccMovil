@@ -31,6 +31,13 @@ class PerfilActivity : AppCompatActivity(), PerfilView {
         setSupportActionBar(toolbarPerfil)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mPresenter?.let {
+            it.cargarDatos()
+        }
+    }
+
     /*
     * Opcion para editar perfil en toolbar
     * */

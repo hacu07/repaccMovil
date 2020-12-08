@@ -7,13 +7,17 @@ import com.example.repacc.pojo.Usuario
 interface ContactoView {
     fun habilitarElementos(siHabilita : Boolean)
     fun mostrarProgreso(siMuestra: Boolean)
+    fun mostrarProgresoSolicitudes(siMuestra: Boolean)
+    fun mostrarProgresoContactos(siMuestra: Boolean)
     fun mostrarMsj(msj : String)
+    fun mostrarMsjSolicitudes(msj : String)
+    fun mostrarMsjContactos(msj : String)
 
 
     fun cargarSolicitudes(solicitudes: ArrayList<Solicitud>?)
     fun cargarContactos(content: ArrayList<Contacto>?)
 
-    abstract fun agregarContacto(content: Contacto?)
-
+    fun agregarContacto(content: Contacto?)
+    fun eliminarSolicitudRechazada(solicitud: Solicitud)
 
 }

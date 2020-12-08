@@ -16,6 +16,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:src="@drawable/espalda_casco"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
         android:layout_marginBottom="@dimen/dimen_16"
         android:scaleType="centerCrop"/>
 
-    <!-- android:src="@drawable/espalda_casco" -->
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIngreso"
