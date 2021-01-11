@@ -117,6 +117,7 @@ class Util {
             AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(msg)
+                .setCancelable(false)
                 .setPositiveButton(textBtnPos, object : DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                         callback.onClickPositive()

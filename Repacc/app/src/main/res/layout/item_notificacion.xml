@@ -40,9 +40,9 @@
                         android:id="@+id/itmNot_foto"
                         android:layout_width="@dimen/dimen_128"
                         android:layout_height="@dimen/dimen_128"
-                        android:scaleType="centerCrop"
+                        android:scaleType="center"
                         android:background="@color/black_de"
-                        android:src="@android:drawable/ic_input_add"
+                        android:src="@android:drawable/ic_menu_camera"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
