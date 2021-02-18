@@ -7,6 +7,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/espalda_casco" />
+            android:src="@drawable/common_google_signin_btn_text_dark_normal_background" />
     </item>
 </layer-list>
